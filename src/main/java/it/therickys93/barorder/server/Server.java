@@ -9,10 +9,10 @@ public class Server {
 	
 	public Server(){
 		component = new Component();
-		component.getServers().add(Protocol.HTTP, Config.INSTANCE.PORT);
+		component.getServers().add(Protocol.HTTP, Configurations.port());
 		component.getDefaultHost().attach("/v1", new BarOrderApiVersionOneApplication());
 		component.setLogService(new LogService(false));
-		component.getLogger().info("Server starded at http://localhost:" + Config.INSTANCE.PORT);
+		component.getLogger().info("Server starded at http://localhost:" + Configurations.port());
 	}
 	
 	public void start() throws Exception {
