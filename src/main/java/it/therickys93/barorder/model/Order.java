@@ -10,12 +10,14 @@ public class Order {
 	private int table;
 	private boolean done;
 	private Product[] products;
+	private boolean ok;
 	
 	public Order(int id, int table, boolean done, Product[] products) {
 		this.id = id;
 		this.table = table;
 		this.done = done;
 		this.products = products;
+		this.ok = true;
 	}
 	
 	public Order(String json){
@@ -35,8 +37,9 @@ public class Order {
 				prods[i] = product;
 			}
 			this.products = prods;
+			this.ok = true;
 		} catch(Exception e){
-			e.printStackTrace();
+			this.ok = false;
 		}
 	}
 
@@ -97,6 +100,10 @@ public class Order {
 			e.printStackTrace();
 		}
 		return results;
+	}
+
+	public boolean ok() {
+		return this.ok;
 	}
 	
 }

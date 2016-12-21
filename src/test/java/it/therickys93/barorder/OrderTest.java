@@ -1,6 +1,8 @@
 package it.therickys93.barorder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -50,6 +52,14 @@ public class OrderTest {
 	public void testSix() {
 		int id = Order.parseComplete("{\"id\": 102}");
 		assertEquals(102, id);
+	}
+	
+	@Test
+	public void testSeven() {
+		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
+		assertTrue(order.ok());
+		Order neworder = new Order("{\"id\":102, \"table\": \"20\", \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
+		assertFalse(neworder.ok());
 	}
 	
 	private Product[] products() {

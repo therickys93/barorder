@@ -7,10 +7,12 @@ public class Product {
 
 	private String name;
 	private int quantity;
+	private boolean ok;
 	
 	public Product(String name, int quantity){
 		this.name = name;
 		this.quantity = quantity;
+		this.ok = true;
 	}
 	
 	public Product(String json){
@@ -20,8 +22,9 @@ public class Product {
 			this.name = (String)product.get("name");
 			Long quantity = (Long)product.get("quantity");
 			this.quantity = quantity.intValue();
+			this.ok = true;
 		} catch(Exception e){
-			e.printStackTrace();
+			this.ok = false;
 		}
 	}
 
@@ -39,6 +42,10 @@ public class Product {
 
 	public String toJson() {
 		return "{\"name\":\""+this.name+"\",\"quantity\":"+this.quantity+"}";
+	}
+
+	public boolean ok() {
+		return this.ok;
 	}
 	
 }

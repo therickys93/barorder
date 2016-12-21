@@ -3,6 +3,8 @@ package it.therickys93.barorder;
 import it.therickys93.barorder.model.Product;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -29,6 +31,14 @@ public class ProductTest {
 		assertEquals(2, product.quantity());
 		assertEquals("{\"name\":\"Cioccolata con panna\",\"quantity\":2}", product.toJson());
 		assertEquals("Product={name=Cioccolata con panna, quantity=2}", product.toString());
+	}
+	
+	@Test
+	public void testFour() {
+		Product product = new Product("{\"name\":\"Cioccolata con panna\", \"quantity\": 2}");
+		assertTrue(product.ok());
+		Product newproduct = new Product("{\"name\":\"Cioccolata con panna\", \"quantity\": \"2\"}");
+		assertFalse(newproduct.ok());
 	}
 	
 }
