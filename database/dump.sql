@@ -52,9 +52,9 @@ DELETE FROM barorder.order WHERE id = ID;
 END$$
 
 DROP PROCEDURE IF EXISTS `insertNewOrder`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertNewOrder` (IN `id` INT(11), IN `table_n` VARCHAR(255), IN `done` INT, IN `name` VARCHAR(255), IN `quantity` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertNewOrder` (IN `id` INT(11), IN `table_n` VARCHAR(255), IN `name` VARCHAR(255), IN `quantity` INT(11))  NO SQL
 BEGIN
-	INSERT INTO barorder.order VALUES (id, table_n, done);
+	INSERT INTO barorder.order VALUES (id, table_n, '0');
 	INSERT INTO barorder.has_products VALUES (id, name, quantity);
 END$$
 
