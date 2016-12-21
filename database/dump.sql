@@ -28,9 +28,9 @@ DELIMITER $$
 -- Procedure
 --
 DROP PROCEDURE IF EXISTS `completeOrder`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `completeOrder` (IN `id` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `completeOrder` (IN `order_id` INT(11))  NO SQL
 BEGIN 
-	UPDATE barorder.order SET done = 1 WHERE id = id; 
+	UPDATE barorder.order SET done = 1 WHERE barorder.order.id = order_id; 
 END$$
 
 DROP PROCEDURE IF EXISTS `deleteOrder`$$
