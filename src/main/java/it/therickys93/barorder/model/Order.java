@@ -39,6 +39,7 @@ public class Order {
 			this.products = prods;
 			this.ok = true;
 		} catch(Exception e){
+			e.printStackTrace();
 			this.ok = false;
 		}
 	}

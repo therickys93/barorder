@@ -108,14 +108,6 @@ CREATE TABLE `product` (
 --
 
 --
--- Indici per le tabelle `has_products`
---
-ALTER TABLE `has_products`
-  ADD PRIMARY KEY (`id`,`name`),
-  ADD KEY `id` (`id`),
-  ADD KEY `name` (`name`);
-
---
 -- Indici per le tabelle `order`
 --
 ALTER TABLE `order`
