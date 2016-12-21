@@ -37,4 +37,19 @@ public class ConfigTest {
 		assertEquals("bardata", Configurations.database());
 	}
 	
+	@Test
+	public void testThree() {
+		assertEquals("jdbc:mysql://localhost:3306/barorder", Configurations.url());
+	}
+	
+	@Test
+	public void testFour() {
+		environmentVariables.set("BARORDER_PORT", "80");
+		environmentVariables.set("BARORDER_HOST", "mysql");
+		environmentVariables.set("BARORDER_USER", "bar");
+		environmentVariables.set("BARORDER_PASSWORD", "pass1234");
+		environmentVariables.set("BARORDER_DATABASE", "bardata");
+		assertEquals("jdbc:mysql://mysql:3306/bardata", Configurations.url());
+	}
+	
 }

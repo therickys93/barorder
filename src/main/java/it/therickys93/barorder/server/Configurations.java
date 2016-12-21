@@ -42,4 +42,10 @@ public class Configurations {
 		}
 	}
 	
+	public static String url() {
+		String url = "";
+		url += "jdbc:mysql://" + host() + ":3306/" + database();
+		return url;
+	}
+	
 }

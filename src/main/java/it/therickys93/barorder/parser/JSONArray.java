@@ -11,11 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * A JSON array. JSONObject supports java.util.List interface.
- * 
- * @author FangYidong<fangyidong@yahoo.com.cn>
- */
 public class JSONArray extends ArrayList implements JSONAware, JSONStreamAware {
 	private static final long serialVersionUID = 3957988303675231981L;
 	
@@ -36,15 +31,6 @@ public class JSONArray extends ArrayList implements JSONAware, JSONStreamAware {
 		super(c);
 	}
 	
-    /**
-     * Encode a list into JSON text and write it to out. 
-     * If this list is also a JSONStreamAware or a JSONAware, JSONStreamAware and JSONAware specific behaviours will be ignored at this top level.
-     * 
-     * @see org.json.simple.JSONValue#writeJSONString(Object, Writer)
-     * 
-     * @param collection
-     * @param out
-     */
 	public static void writeJSONString(Collection collection, Writer out) throws IOException{
 		if(collection == null){
 			out.write("null");
@@ -76,15 +62,6 @@ public class JSONArray extends ArrayList implements JSONAware, JSONStreamAware {
 		writeJSONString(this, out);
 	}
 	
-	/**
-	 * Convert a list to JSON text. The result is a JSON array. 
-	 * If this list is also a JSONAware, JSONAware specific behaviours will be omitted at this top level.
-	 * 
-	 * @see org.json.simple.JSONValue#toJSONString(Object)
-	 * 
-	 * @param collection
-	 * @return JSON text, or "null" if list is null.
-	 */
 	public static String toJSONString(Collection collection){
 		final StringWriter writer = new StringWriter();
 		

@@ -2,14 +2,6 @@ package it.therickys93.barorder.parser;
 
 import java.io.IOException;
 
-/**
- * A simplified and stoppable SAX-like content handler for stream processing of JSON text. 
- * 
- * @see org.xml.sax.ContentHandler
- * @see org.json.simple.parser.JSONParser#parse(java.io.Reader, ContentHandler, boolean)
- * 
- * @author FangYidong<fangyidong@yahoo.com.cn>
- */
 public interface ContentHandler {
 	/**
 	 * Receive notification of the beginning of JSON processing.

@@ -12,11 +12,15 @@ public class BarOrderApiVersionOneApplication extends Application {
 		
 		// POST /v1/test
 		router.attach("/test", TestResource.class);
-		getLogger().info("Started " + TestResource.class.toString() + "@ /v1/test");
+		getLogger().info("Started " + TestResource.class.toString() + " @ /v1/test");
 		
 		// POST /v1/newOrder
 		router.attach("/newOrder", NewOrder.class);
 		getLogger().info("Started " + NewOrder.class.toString() + " @ /v1/newOrder");
+		
+		// POST /v1/updateOrder
+		router.attach("", UpdateOrder.class);
+		getLogger().info("Started " + UpdateOrder.class.toString() + " @ /v1/updateOrder");
 				
 		return router;
 	}
