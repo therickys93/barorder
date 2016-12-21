@@ -25,6 +25,10 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// GET /v1/products
 		router.attach("/products", ProductsResource.class);
 		getLogger().info("Started " + ProductsResource.class.toString() + " @ /v1/products");
+		
+		// POST /v1/completeOrder
+		router.attach("/completeOrder", CompleteOrder.class);
+		getLogger().info("Started " + CompleteOrder.class.toString() + " @ /v1/completeOrder");
 	
 		return router;
 	}

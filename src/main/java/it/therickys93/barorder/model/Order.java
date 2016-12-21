@@ -85,5 +85,18 @@ public class Order {
 		response += "]}";
 		return response;
 	}
+
+	public static int parseComplete(String json) {
+		int results = 0;
+		try {
+			JSONParser parser = new JSONParser();
+			JSONObject complete = (JSONObject)parser.parse(json);
+			Long id = (Long)complete.get("id");
+			results = id.intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
 	
 }

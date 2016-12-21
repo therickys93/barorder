@@ -46,6 +46,12 @@ public class OrderTest {
 		assertEquals("Order={id=102, table=20, done=false, products=[Product={name=Cioccolata con panna, quantity=2}, Product={name=Cigni, quantity=2}]}", order.toString());
 	}
 	
+	@Test
+	public void testSix() {
+		int id = Order.parseComplete("{\"id\": 102}");
+		assertEquals(102, id);
+	}
+	
 	private Product[] products() {
 		Product[] products = new Product[1];
 		products[0] = new Product("Cioccolata con panna", 2);
