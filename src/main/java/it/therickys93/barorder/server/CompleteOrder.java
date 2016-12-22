@@ -1,9 +1,6 @@
 package it.therickys93.barorder.server;
 
 import java.io.IOException;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,11 +9,12 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import it.therickys93.barorder.database.DatabaseIntegration;
 import it.therickys93.barorder.model.Order;
 
 public class CompleteOrder extends ServerResource {
 
-	@Post
+	@Post("json")
 	public Map<String, Boolean> completeOrder(Representation data) throws IOException {
 		
 		String request = data.getText();
@@ -34,12 +32,10 @@ public class CompleteOrder extends ServerResource {
 		response.put("success", false);
 		
 		try {
-			Connection conn = DriverManager.getConnection(Configurations.url(), Configurations.user(), Configurations.password());
-			CallableStatement callStatement = conn.prepareCall("{ CALL completeOrder(?)}");
-			callStatement.setInt(1, id);
-			callStatement.execute();
-			callStatement.close();
-			conn.close();
+			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			database.open();
+			database.completeOrderWithId(id);
+			database.close();
 			response.remove("success");
 			response.put("success", true);
 		} catch (Exception e){
