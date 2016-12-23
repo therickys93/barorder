@@ -35,17 +35,31 @@ public class DatabaseIntegration {
 	private String url;
 	private String username;
 	private String password;
+	private String port;
+	private String database;
 	
 	public DatabaseIntegration(String url, String username, String password) {
 		this.url = url;
 		this.username = username;
 		this.password = password;
+		String[] tokens = url.split(":");
+		String portAndDatabase = tokens[3];
+		this.port = portAndDatabase.split("/")[0];
+		this.database = portAndDatabase.split("/")[1];
+	}
+	
+	public String port() {
+		return this.port;
+	}
+	
+	public String database() {
+		return this.database;
 	}
 	
 	public DatabaseIntegration() {
 		this(Configurations.url(), Configurations.user(), Configurations.password());
 	}
-
+	
 	public DatabaseMetaData databaseMetadata() throws SQLException {
 		return this.connection.getMetaData();
 	}

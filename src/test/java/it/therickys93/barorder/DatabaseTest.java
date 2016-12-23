@@ -15,6 +15,8 @@ public class DatabaseTest {
 		assertEquals("jdbc:mysql://localhost:3306/barorder", database.url());
 		assertEquals("root", database.username());
 		assertEquals("password", database.password());
+		assertEquals("3306", database.port());
+		assertEquals("barorder", database.database());
 	}
 	
 	@Test
@@ -23,6 +25,8 @@ public class DatabaseTest {
 		assertEquals("jdbc:mysql://localhost:3306/barorder", database.url());
 		assertEquals("root", database.username());
 		assertEquals("password", database.password());
+		assertEquals("3306", database.port());
+		assertEquals("barorder", database.database());
 	}
 	
 	@Test
