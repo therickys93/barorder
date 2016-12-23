@@ -14,7 +14,7 @@ import org.restlet.resource.ServerResource;
 
 import it.therickys93.barorder.model.Order;
 
-public class NewOrder extends ServerResource{
+public class InsertNewOrder extends ServerResource{
 
 	@Post
 	public Map<String, Boolean> newOrder(Representation data) throws IOException {

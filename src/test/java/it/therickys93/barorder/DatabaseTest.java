@@ -19,6 +19,12 @@ public class DatabaseTest {
 	}
 	
 	@Test
+	public void testDatabaseIntegrationConstants() {
+		assertEquals("{ CALL completeOrder(?)}", DatabaseIntegration.COMPLETE_ORDER_QUERY);
+		assertEquals(1, DatabaseIntegration.COMPLETE_ORDER_ID);
+	}
+	
+	@Test
 	public void testOne() {
 		assertEquals("SELECT * FROM product", ProductsResource.GET_ALL_PRODUCTS_QUERY);
 		assertEquals(1, ProductsResource.PRODUCT_NAME_COLUMN);

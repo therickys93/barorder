@@ -1,11 +1,19 @@
 package it.therickys93.barorder.database;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
 
 import it.therickys93.barorder.model.Order;
 
 public class DatabaseIntegration {
 
+	public static final String COMPLETE_ORDER_QUERY = "{ CALL completeOrder(?)}";
+	public static final int COMPLETE_ORDER_ID = 1;
+	
 	private Connection connection;
 	private String url;
 	private String username;
@@ -22,12 +30,21 @@ public class DatabaseIntegration {
 	}
 	
 	public void insertNewOrder(Order order) throws SQLException {
-		// TODO: implementarlo insertNewOrder()
+		// TODO: implement insertNewOrder()
+	}
+	
+	public void updateOrder(Order order) throws SQLException {
+		// TODO: implement updateOrder();
+	}
+	
+	public List<String> getAllProducts() throws SQLException {
+		// TODO: implement getAllProducts();
+		return null;
 	}
 	
 	public void completeOrderWithId(int id) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall("{ CALL completeOrder(?)}");
-		callableStatement.setInt(1, id);
+		CallableStatement callableStatement = this.connection.prepareCall(COMPLETE_ORDER_QUERY);
+		callableStatement.setInt(COMPLETE_ORDER_ID, id);
 		callableStatement.execute();
 		callableStatement.close();
 	}

@@ -15,8 +15,8 @@ public class BarOrderApiVersionOneApplication extends Application {
 		getLogger().info("Started " + TestResource.class.toString() + " @ /v1/test");
 		
 		// POST /v1/newOrder
-		router.attach("/newOrder", NewOrder.class);
-		getLogger().info("Started " + NewOrder.class.toString() + " @ /v1/newOrder");
+		router.attach("/insertNewOrder", InsertNewOrder.class);
+		getLogger().info("Started " + InsertNewOrder.class.toString() + " @ /v1/insertNewOrder");
 		
 		// POST /v1/updateOrder
 		router.attach("/updateOrder", UpdateOrder.class);
