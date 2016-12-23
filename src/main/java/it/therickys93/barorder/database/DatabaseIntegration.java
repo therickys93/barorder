@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.therickys93.barorder.model.Order;
+import it.therickys93.barorder.model.Product;
 import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
@@ -104,6 +106,42 @@ public class DatabaseIntegration {
 		resultSet.close();
 		statement.close();
 		return response;
+	}
+	
+	public List<String> allOrders() throws SQLException {
+		List<String> orders = new ArrayList<String>();
+		Statement statement = this.connection.createStatement();
+		statement.execute("select o.id from barorder.order as o where done = 0");
+		ResultSet resultSet = statement.getResultSet();
+		while(resultSet.next()){
+			orders.add(orderWithId(resultSet.getInt(1)).toJson());
+		}
+		return orders;
+	}
+	
+	public List<Product> productsWithId(int id) throws SQLException {
+		List<Product> products = new ArrayList<Product>();
+		PreparedStatement preparedStatement = this.connection.prepareStatement("select name, quantity from barorder.has_products where id = ?");
+		preparedStatement.setInt(1, id);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		while(resultSet.next()){
+			Product product = new Product(resultSet.getString(1), resultSet.getInt(2));
+			products.add(product);
+		}
+		return products;
+	}
+	
+	public Order orderWithId(int id) throws SQLException {
+		Order order = null;
+		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done from barorder.order as o where id = ?;");
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		while(resultSet.next()){
+			order = new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3), productsWithId(id).toArray(new Product[0]));
+		}
+		resultSet.close();
+		statement.close();
+		return order;
 	}
 	
 	public void completeOrderWithId(int id) throws SQLException {

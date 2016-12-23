@@ -36,6 +36,12 @@ public class BarOrderApiVersionOneApplication extends Application {
 		router.attach(BarOrderInfo.deleteOrderPath(), DeleteOrder.class);
 		getLogger().info(BarOrderInfo.deleteOrderPathInfo());
 		
+		// GET /v1/order/{id}
+		router.attach("/order/{id}", OrderWithId.class);
+		
+		// GET /v1/orders
+		router.attach("/orders", Orders.class);
+		
 		return router;
 	}
 	
