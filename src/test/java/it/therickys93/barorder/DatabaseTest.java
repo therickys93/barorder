@@ -41,6 +41,12 @@ public class DatabaseTest {
 	}
 	
 	@Test
+	public void testDeleteOrderConstants() {
+		assertEquals("{ CALL deleteOrder(?)}", DatabaseIntegration.DELETE_ORDER_QUERY);
+		assertEquals(1, DatabaseIntegration.DELETE_ORDER_ID);
+	}
+	
+	@Test
 	public void testGetAllProducts() {
 		assertEquals("SELECT * FROM product", DatabaseIntegration.GET_ALL_PRODUCTS_QUERY);
 		assertEquals(1, DatabaseIntegration.PRODUCT_NAME_COLUMN);

@@ -27,6 +27,8 @@ public class DatabaseIntegration {
 	public static final int UPDATE_ORDER_QUANTITY = 3;
 	public static final String GET_ALL_PRODUCTS_QUERY = "SELECT * FROM product";
 	public static final int PRODUCT_NAME_COLUMN = 1; 
+	public static final String DELETE_ORDER_QUERY = "{ CALL deleteOrder(?)}";
+	public static final int DELETE_ORDER_ID = 1;
 	
 	private Connection connection;
 	private String url;
@@ -61,11 +63,15 @@ public class DatabaseIntegration {
 	}
 	
 	public void updateOrder(Order order) throws SQLException {
-		// TODO: implement updateOrder();
+		deleteOrder(order.id());
+		insertNewOrder(order);
 	}
 	
 	public void deleteOrder(int id) throws SQLException {
-		// TODO: implement deleteOrder();
+		CallableStatement callableStatement = this.connection.prepareCall(DELETE_ORDER_QUERY);
+		callableStatement.setInt(DELETE_ORDER_ID, id);
+		callableStatement.execute();
+		callableStatement.close();
 	}
 	
 	public List<String> allProducts() throws SQLException {
