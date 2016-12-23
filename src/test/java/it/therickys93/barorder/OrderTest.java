@@ -16,6 +16,7 @@ public class OrderTest {
 		Order order = new Order(102, 20, false, products());
 		assertEquals(102, order.id());
 		assertEquals(20, order.table());
+		assertFalse(order.done());
 		assertEquals("Cioccolata con panna", order.products()[0].name());
 		assertEquals(2, order.products()[0].quantity());
 	}
@@ -52,6 +53,8 @@ public class OrderTest {
 	public void testSix() {
 		int id = Order.parseComplete("{\"id\": 102}");
 		assertEquals(102, id);
+		int newId = Order.parseComplete("{\"id\": \"102\"}");
+		assertEquals(0, newId);
 	}
 	
 	@Test

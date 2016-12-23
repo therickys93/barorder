@@ -39,7 +39,6 @@ public class Order {
 			this.products = prods;
 			this.ok = true;
 		} catch(Exception e){
-			e.printStackTrace();
 			this.ok = false;
 		}
 	}
@@ -98,7 +97,7 @@ public class Order {
 			Long id = (Long)complete.get("id");
 			results = id.intValue();
 		} catch (Exception e) {
-			e.printStackTrace();
+			results = 0;
 		}
 		return results;
 	}
