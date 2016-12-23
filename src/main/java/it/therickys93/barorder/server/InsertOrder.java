@@ -12,7 +12,7 @@ import org.restlet.resource.ServerResource;
 import it.therickys93.barorder.database.DatabaseIntegration;
 import it.therickys93.barorder.model.Order;
 
-public class InsertNewOrder extends ServerResource{
+public class InsertOrder extends ServerResource{
 
 	@Post
 	public Map<String, Boolean> newOrder(Representation data) throws IOException {

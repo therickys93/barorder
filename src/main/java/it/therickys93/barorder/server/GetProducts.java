@@ -9,7 +9,7 @@ import org.restlet.resource.ServerResource;
 
 import it.therickys93.barorder.database.DatabaseIntegration;
 
-public class ProductsResource extends ServerResource {
+public class GetProducts extends ServerResource {
 	
 	@Get
 	public List<String> getProducts() throws IOException {
