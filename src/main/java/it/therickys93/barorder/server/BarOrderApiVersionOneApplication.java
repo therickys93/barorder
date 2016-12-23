@@ -33,7 +33,7 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// POST /v1/deleteOrder
 		router.attach("/deleteOrder", DeleteOrder.class);
 		getLogger().info("Started " + DeleteOrder.class.toString() + " @ /v1/deleteOrder");
-	
+		
 		return router;
 	}
 	

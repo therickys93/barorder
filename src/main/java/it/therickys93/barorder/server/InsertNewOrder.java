@@ -32,7 +32,7 @@ public class InsertNewOrder extends ServerResource{
 		response.put("success", false);
 		
 		try {
-			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
 			database.insertNewOrder(order);
 			database.close();

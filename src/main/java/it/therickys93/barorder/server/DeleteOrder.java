@@ -31,7 +31,7 @@ public class DeleteOrder extends ServerResource {
 		response.put("success", false);
 		
 		try {
-			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
 			database.deleteOrder(id);
 			database.close();

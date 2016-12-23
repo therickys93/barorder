@@ -18,6 +18,14 @@ public class DatabaseTest {
 	}
 	
 	@Test
+	public void testDatabaseIntegrationClassWithNoArguments() {
+		DatabaseIntegration database = new DatabaseIntegration();
+		assertEquals("jdbc:mysql://localhost:3306/barorder", database.url());
+		assertEquals("root", database.username());
+		assertEquals("password", database.password());
+	}
+	
+	@Test
 	public void testCompleteOrderConstants() {
 		assertEquals("{ CALL completeOrder(?)}", DatabaseIntegration.COMPLETE_ORDER_QUERY);
 		assertEquals(1, DatabaseIntegration.COMPLETE_ORDER_ID);

@@ -32,7 +32,7 @@ public class CompleteOrder extends ServerResource {
 		response.put("success", false);
 		
 		try {
-			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
 			database.completeOrderWithId(id);
 			database.close();

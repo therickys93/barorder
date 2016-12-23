@@ -16,7 +16,7 @@ public class ProductsResource extends ServerResource {
 		
 		List<String> response = new ArrayList<String>();
 		try {
-			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
 			response = database.allProducts();
 			database.close();

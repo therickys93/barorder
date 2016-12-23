@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.therickys93.barorder.model.Order;
+import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
 
@@ -41,6 +42,10 @@ public class DatabaseIntegration {
 		this.password = password;
 	}
 	
+	public DatabaseIntegration() {
+		this(Configurations.url(), Configurations.user(), Configurations.password());
+	}
+
 	public DatabaseMetaData databaseMetadata() throws SQLException {
 		return this.connection.getMetaData();
 	}
