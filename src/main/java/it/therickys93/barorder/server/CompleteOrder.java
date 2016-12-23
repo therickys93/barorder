@@ -14,7 +14,7 @@ import it.therickys93.barorder.model.Order;
 
 public class CompleteOrder extends ServerResource {
 
-	@Post("json")
+	@Post
 	public Map<String, Boolean> completeOrder(Representation data) throws IOException {
 		
 		String request = data.getText();

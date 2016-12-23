@@ -18,7 +18,7 @@ public class Server {
 	public void start() throws Exception {
 		component.start();
 	}
-	
+		
 	public void stop() throws Exception {
 		component.stop();
 	}

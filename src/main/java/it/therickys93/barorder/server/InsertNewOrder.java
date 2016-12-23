@@ -1,9 +1,6 @@
 package it.therickys93.barorder.server;
 
 import java.io.IOException;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +9,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import it.therickys93.barorder.database.DatabaseIntegration;
 import it.therickys93.barorder.model.Order;
 
 public class InsertNewOrder extends ServerResource{
@@ -34,22 +32,10 @@ public class InsertNewOrder extends ServerResource{
 		response.put("success", false);
 		
 		try {
-			Connection conn = DriverManager.getConnection(Configurations.url(), Configurations.user(), Configurations.password());
-			CallableStatement callStatement = conn.prepareCall("{ CALL insertNewOrder(?, ?, ?, ?)}");
-			callStatement.setInt(1, order.id());
-			callStatement.setInt(2, order.table());
-			callStatement.setString(3, order.products()[0].name());
-			callStatement.setInt(4, order.products()[0].quantity());
-			callStatement.execute();
-			callStatement = conn.prepareCall("{ CALL updateOrder(?, ?, ?)}");
-			callStatement.setInt(1, order.id());
-			for(int i = 1; i < order.products().length; i++) {
-				callStatement.setString(2, order.products()[i].name());
-				callStatement.setInt(3, order.products()[i].quantity());
-				callStatement.execute();
-			}
-			callStatement.close();
-			conn.close();
+			DatabaseIntegration database = new DatabaseIntegration(Configurations.url(), Configurations.user(), Configurations.password());
+			database.open();
+			database.insertNewOrder(order);
+			database.close();
 			response.remove("success");
 			response.put("success", true);
 		} catch (Exception e){
