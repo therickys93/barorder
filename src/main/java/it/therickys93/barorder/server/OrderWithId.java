@@ -11,7 +11,7 @@ import it.therickys93.barorder.model.Order;
 public class OrderWithId extends ServerResource {
 
 	@Get
-	public String orderWithId() throws IOException {
+	public Order orderWithId() throws IOException {
 		
 		final String string_id = getAttribute("id");
 		if(string_id.equals(null) || string_id.equals("")) {
@@ -28,10 +28,7 @@ public class OrderWithId extends ServerResource {
 		} catch(Exception e){
 			getLogger().warning("Error in the database: " +e.getMessage());
 		}
-		if(order == null){
-			return "{}";
-		}
-		return order.toJson();
+		return order;
 	}
 	
 }

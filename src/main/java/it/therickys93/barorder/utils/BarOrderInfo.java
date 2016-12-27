@@ -5,6 +5,8 @@ import it.therickys93.barorder.server.Configurations;
 import it.therickys93.barorder.server.DeleteOrder;
 import it.therickys93.barorder.server.GetProducts;
 import it.therickys93.barorder.server.InsertOrder;
+import it.therickys93.barorder.server.OrderWithId;
+import it.therickys93.barorder.server.Orders;
 import it.therickys93.barorder.server.TestResource;
 import it.therickys93.barorder.server.UpdateOrder;
 
@@ -17,6 +19,8 @@ public class BarOrderInfo {
 	private static String COMPLETE_ORDER = "completeOrder";
 	private static String DELETE_ORDER = "deleteOrder";
 	private static String PRODUCTS = "products";
+	private static String ORDERS = "orders";
+	private static String ORDER_WITH_ID = "order/{id}";
 	
 	public static String apiPath() {
 		return "/" + API_VERSION;
@@ -72,5 +76,21 @@ public class BarOrderInfo {
 	
 	public static String productsPath() {
 		return "/" + PRODUCTS;
+	}
+
+	public static String ordersPath() {
+		return "/" + ORDERS;
+	}
+
+	public static String orderWithIdPath() {
+		return "/" + ORDER_WITH_ID;
+	}
+
+	public static String ordersPathInfo() {
+		return "Started " + Orders.class.toString() + " @ " + apiPath() + ordersPath();
+	}
+
+	public static String orderWithIdPathInfo() {
+		return "Started " + OrderWithId.class.toString() + " @ " + apiPath() + orderWithIdPath();
 	}
 }
