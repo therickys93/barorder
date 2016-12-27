@@ -6,10 +6,10 @@ import it.therickys93.barorder.parser.JSONParser;
 
 public class Order {
 
-	private int id;
-	private int table;
-	private boolean done;
-	private Product[] products;
+	public int id;
+	public int table;
+	public boolean done;
+	public Product[] products;
 	private boolean ok;
 	
 	public Order(int id, int table, boolean done, Product[] products) {

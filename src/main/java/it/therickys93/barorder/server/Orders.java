@@ -13,8 +13,8 @@ import it.therickys93.barorder.model.Order;
 public class Orders extends ServerResource {
 
 	@Get
-	public List<String> orders() throws IOException {
-		List<String> orders = new ArrayList<String>();
+	public List<Order> orders() throws IOException {
+		List<Order> orders = new ArrayList<Order>();
 		try {
 			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();

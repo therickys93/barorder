@@ -5,8 +5,8 @@ import it.therickys93.barorder.parser.JSONParser;
 
 public class Product {
 
-	private String name;
-	private int quantity;
+	public String name;
+	public int quantity;
 	private boolean ok;
 	
 	public Product(String name, int quantity){

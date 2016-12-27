@@ -4,7 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.Test;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.model.Product;
@@ -63,6 +71,23 @@ public class OrderTest {
 		assertTrue(order.ok());
 		Order neworder = new Order("{\"id\":102, \"table\": \"20\", \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
 		assertFalse(neworder.ok());
+	}
+	
+	@Test
+	public void jacksonTest() {
+		Order order = new Order(0, 0, false, products());
+		ObjectMapper objectWriter = new ObjectMapper();
+		objectWriter.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+		try {
+			String s = objectWriter.writeValueAsString(order);
+			assertEquals("{\"id\":0,\"table\":0,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2,\"ok\":true}],\"ok\":true}", s);
+		} catch(JsonGenerationException e) {
+			e.printStackTrace();
+		} catch(JsonMappingException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Product[] products() {

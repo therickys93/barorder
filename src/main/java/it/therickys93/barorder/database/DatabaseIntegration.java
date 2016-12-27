@@ -108,13 +108,13 @@ public class DatabaseIntegration {
 		return response;
 	}
 	
-	public List<String> allOrders() throws SQLException {
-		List<String> orders = new ArrayList<String>();
+	public List<Order> allOrders() throws SQLException {
+		List<Order> orders = new ArrayList<Order>();
 		Statement statement = this.connection.createStatement();
 		statement.execute("select o.id from barorder.order as o where done = 0");
 		ResultSet resultSet = statement.getResultSet();
 		while(resultSet.next()){
-			orders.add(orderWithId(resultSet.getInt(1)).toJson());
+			orders.add(orderWithId(resultSet.getInt(1)));
 		}
 		return orders;
 	}
