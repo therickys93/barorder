@@ -104,8 +104,12 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indici per le tabelle scaricate
+-- Dump dei dati per la tabella `product`
 --
+
+INSERT INTO `product` (`name`) VALUES
+('prova'),
+('test');
 
 --
 -- Indici per le tabelle `order`
