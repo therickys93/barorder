@@ -1,7 +1,6 @@
 package it.therickys93.barorder.server;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.restlet.data.Status;
@@ -11,6 +10,7 @@ import org.restlet.resource.ServerResource;
 
 import it.therickys93.barorder.database.DatabaseIntegration;
 import it.therickys93.barorder.model.Order;
+import it.therickys93.barorder.utils.BarOrderResponse;
 
 public class UpdateOrder extends ServerResource {
 
@@ -28,21 +28,17 @@ public class UpdateOrder extends ServerResource {
 		}
 		getLogger().info(order.toString());
 		
-		Map<String, Boolean> response = new HashMap<String, Boolean>();
-		response.put("success", false);
-		
 		try {
 			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
 			database.updateOrder(order);
 			database.close();
-			response.remove("success");
-			response.put("success", true);
 		} catch(Exception e) {
 			getLogger().warning("Error in the database: " + e.getMessage());
+			return BarOrderResponse.bad();
 		}
 		
-		return response;
+		return BarOrderResponse.ok();
 	}
 	
 }
