@@ -108,8 +108,38 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`name`) VALUES
-('prova'),
-('test');
+('acqua'),
+('bibite'),
+('caffe al ginseng'),
+('caffe americano'),
+('caffe d\'orzo'),
+('caffe decaffeinato'),
+('caffe decaffeinato shakerato'),
+('caffe espresso'),
+('caffe freddo'),
+('caffe latte'),
+('caffe shakerato'),
+('cappuccino'),
+('cappuccino al ginseng'),
+('cappuccino d\'orzo'),
+('cappuccino decaffeinato'),
+('cappuccino freddo'),
+('ciambella'),
+('cioccolata'),
+('cioccolata con panna'),
+('crema di caffe'),
+('crostata'),
+('frullati vari'),
+('insalatone'),
+('latte bianco'),
+('latte macchiato'),
+('panini assortiti'),
+('spremuta'),
+('succhi di frutta'),
+('the ed infusi'),
+('the freddo'),
+('toast'),
+('tramezzini assortiti');
 
 --
 -- Indici per le tabelle `order`

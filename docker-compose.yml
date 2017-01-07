@@ -5,10 +5,16 @@ services:
     build: ./database/
     environment:
       - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - backbone
+
   phpmyadmin:
     image: nazarpc/phpmyadmin
     ports:
       - "1234:80"
+    networks:
+      - backbone
+
   barorder:
     build: .
     environment:
@@ -18,3 +24,9 @@ services:
       - BARORDER_DATABASE=barorder
     ports:
       - "80:8080"
+    networks:
+      - backbone
+
+networks:
+  backbone:
+    driver: bridge
