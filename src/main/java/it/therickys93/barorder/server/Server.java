@@ -12,6 +12,7 @@ public class Server {
 	public Server(){
 		component = new Component();
 		component.getServers().add(Protocol.HTTP, Configurations.port());
+		component.getDefaultHost().attach(BarOrderInfo.defaultPath(), new BarOrderApplication());
 		component.getDefaultHost().attach(BarOrderInfo.apiPath(), new BarOrderApiVersionOneApplication());
 		component.setLogService(new LogService(false));
 		component.getLogger().info(BarOrderInfo.serverInfo());

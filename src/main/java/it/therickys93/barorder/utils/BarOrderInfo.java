@@ -4,6 +4,7 @@ import it.therickys93.barorder.server.CompleteOrder;
 import it.therickys93.barorder.server.Configurations;
 import it.therickys93.barorder.server.DeleteOrder;
 import it.therickys93.barorder.server.GetProducts;
+import it.therickys93.barorder.server.IndexResource;
 import it.therickys93.barorder.server.InsertOrder;
 import it.therickys93.barorder.server.OrderWithId;
 import it.therickys93.barorder.server.Orders;
@@ -12,6 +13,7 @@ import it.therickys93.barorder.server.UpdateOrder;
 
 public class BarOrderInfo {
 
+	private static String DEFAULT_PATH = "/";
 	private static String API_VERSION = "v1";
 	private static String TEST = "test";
 	private static String INSERT_ORDER = "insertOrder";
@@ -93,4 +95,17 @@ public class BarOrderInfo {
 	public static String orderWithIdPathInfo() {
 		return "Started " + OrderWithId.class.toString() + " @ " + apiPath() + orderWithIdPath();
 	}
+
+	public static String defaultPath() {
+		return DEFAULT_PATH;
+	}
+
+	public static String indexPath() {
+		return "";
+	}
+
+	public static String indexPathInfo() {
+		return "Started "+ IndexResource.class.toString() +" @ " + defaultPath() + indexPath();
+	}
+
 }

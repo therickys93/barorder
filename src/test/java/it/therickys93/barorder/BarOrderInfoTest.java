@@ -37,4 +37,11 @@ public class BarOrderInfoTest {
 		assertEquals("Started class it.therickys93.barorder.server.OrderWithId @ /v1/order/{id}", BarOrderInfo.orderWithIdPathInfo());
 	}
 	
+	@Test
+	public void testApplication() {
+		assertEquals("/", BarOrderInfo.defaultPath());
+		assertEquals("", BarOrderInfo.indexPath());
+		assertEquals("Started class it.therickys93.barorder.server.IndexResource @ /", BarOrderInfo.indexPathInfo());
+	}
+	
 }
