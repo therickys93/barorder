@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# how to configure the cronjob
+# use command: crontab -e 
+# the line should be something like this:
+# */15  *   *   *   *   sh databasedump
+
+set -v
+mysqldump -u root -ppassword --add-drop-database --databases barorder > barorder.sql 
+ncftp <<END_OF_SESSION
+open -u $FTP_USER -p $FTP_PASSWORD $FTP_SERVER
+dir
+cd backup
+rm -rf *
+dir
+put barorder.sql
+dir
+bye
+END_OF_SESSION
