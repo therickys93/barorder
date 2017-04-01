@@ -57,6 +57,8 @@ public class BarOrderApiVersionOneApplication extends Application {
 		getLogger().info(BarOrderInfo.paymentsPathInfo());
 		
 		// POST /v1/payOrder
+		router.attach(BarOrderInfo.payOrderPath(), PayOrder.class);
+		getLogger().info(BarOrderInfo.payOrderPathInfo());
 		
 		return router;
 	}

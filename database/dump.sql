@@ -33,6 +33,12 @@ BEGIN
 	UPDATE barorder.order SET done = 1 WHERE barorder.order.id = order_id; 
 END$$
 
+DROP PROCEDURE IF EXISTS `payOrder`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `payOrder` (IN `order_id` INT(11))  NO SQL
+BEGIN 
+	UPDATE barorder.order SET pay = 1 WHERE barorder.order.id = order_id; 
+END$$
+
 DROP PROCEDURE IF EXISTS `deleteOrder`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOrder` (IN `ID` INT(11))  NO SQL
 BEGIN

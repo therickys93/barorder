@@ -19,6 +19,8 @@ public class DatabaseIntegration {
 
 	public static final String COMPLETE_ORDER_QUERY = "{ CALL completeOrder(?)}";
 	public static final int COMPLETE_ORDER_ID = 1;
+	public static final String PAY_ORDER_QUERY = "{ CALL payOrder(?)}";
+	public static final int PAY_ORDER_ID = 1;
 	public static final String INSERT_NEW_ORDER_QUERY = "{ CALL insertNewOrder(?, ?, ?, ?)}";
 	public static final int INSERT_NEW_ORDER_ID = 1;
 	public static final int INSERT_NEW_ORDER_TABLE = 2;
@@ -158,6 +160,13 @@ public class DatabaseIntegration {
 	public void completeOrderWithId(int id) throws SQLException {
 		CallableStatement callableStatement = this.connection.prepareCall(COMPLETE_ORDER_QUERY);
 		callableStatement.setInt(COMPLETE_ORDER_ID, id);
+		callableStatement.execute();
+		callableStatement.close();
+	}
+	
+	public void payOrderWithId(int id) throws SQLException {
+		CallableStatement callableStatement = this.connection.prepareCall(PAY_ORDER_QUERY);
+		callableStatement.setInt(PAY_ORDER_ID, id);
 		callableStatement.execute();
 		callableStatement.close();
 	}
