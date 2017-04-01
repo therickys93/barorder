@@ -52,6 +52,12 @@ public class BarOrderApiVersionOneApplication extends Application {
 		router.attach(BarOrderInfo.ordersPath(), Orders.class);
 		getLogger().info(BarOrderInfo.ordersPathInfo());
 		
+		// GET /v1/payments --> prende tutti gli ordini fatti ma non ancora pagati
+		router.attach(BarOrderInfo.paymentsPath(), Payments.class);
+		getLogger().info(BarOrderInfo.paymentsPathInfo());
+		
+		// POST /v1/payOrder
+		
 		return router;
 	}
 	

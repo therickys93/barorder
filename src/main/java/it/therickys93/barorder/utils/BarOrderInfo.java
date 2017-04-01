@@ -8,11 +8,13 @@ import it.therickys93.barorder.server.IndexResource;
 import it.therickys93.barorder.server.InsertOrder;
 import it.therickys93.barorder.server.OrderWithId;
 import it.therickys93.barorder.server.Orders;
+import it.therickys93.barorder.server.Payments;
 import it.therickys93.barorder.server.TestResource;
 import it.therickys93.barorder.server.UpdateOrder;
 
 public class BarOrderInfo {
 
+	private static final String PAYMENTS = "payments";
 	private static String DEFAULT_PATH = "/";
 	private static String API_VERSION = "v1";
 	private static String TEST = "test";
@@ -106,6 +108,14 @@ public class BarOrderInfo {
 
 	public static String indexPathInfo() {
 		return "Started "+ IndexResource.class.toString() +" @ " + defaultPath() + indexPath();
+	}
+
+	public static String paymentsPath() {
+		return "/" + PAYMENTS;
+	}
+
+	public static String paymentsPathInfo() {
+		return "Started " + Payments.class.toString() + " @ " + apiPath() + paymentsPath();
 	}
 
 }

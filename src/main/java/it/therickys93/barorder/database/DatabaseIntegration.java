@@ -111,9 +111,20 @@ public class DatabaseIntegration {
 	public List<Order> allOrders() throws SQLException {
 		List<Order> orders = new ArrayList<Order>();
 		Statement statement = this.connection.createStatement();
-		statement.execute("select o.id from barorder.order as o where done = 0");
+		statement.execute("select o.id from barorder.order as o where done = 0 and pay = 0");
 		ResultSet resultSet = statement.getResultSet();
 		while(resultSet.next()){
+			orders.add(orderWithId(resultSet.getInt(1)));
+		}
+		return orders;
+	}
+	
+	public List<Order> allPayments() throws SQLException {
+		List<Order> orders = new ArrayList<Order>();
+		Statement statement = this.connection.createStatement();
+		statement.execute("select select o.id from barorder.order as o where done = 1 and pay = 0");
+		ResultSet resultSet = statement.getResultSet();
+		while(resultSet.next()) {
 			orders.add(orderWithId(resultSet.getInt(1)));
 		}
 		return orders;

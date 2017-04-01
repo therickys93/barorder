@@ -89,7 +89,8 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `table` varchar(255) NOT NULL,
-  `done` tinyint(1) NOT NULL DEFAULT '0'
+  `done` tinyint(1) NOT NULL DEFAULT '0',
+  `pay` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
