@@ -2,14 +2,14 @@ version: '2'
 
 services:
   mysql:
-    build: therickys93/barorderdatabase
+    image: therickys93/barorderdatabase
     environment:
       - MYSQL_ROOT_PASSWORD=password
     networks:
       - backbone
 
   barorder:
-    build: therickys93/barorderserver
+    image: therickys93/barorderserver
     environment:
       - BARORDER_HOST=mysql
       - BARORDER_USER=root
