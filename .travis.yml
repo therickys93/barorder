@@ -5,3 +5,6 @@ services:
   - docker
 script:
   - ./gradlew clean check stage
+  - docker build -t therickys93/barorderserver .
+  - docker build -t therickys93/barorderdatabase database/
+  - docker images | grep "barorder"
