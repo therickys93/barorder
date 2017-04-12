@@ -8,13 +8,6 @@ services:
     networks:
       - backbone
 
-  phpmyadmin:
-    image: nazarpc/phpmyadmin
-    ports:
-      - "1234:80"
-    networks:
-      - backbone
-
   barorder:
     build: therickys93/barorderserver
     environment:
