@@ -10,7 +10,6 @@ import it.therickys93.barorder.server.OrderWithId;
 import it.therickys93.barorder.server.Orders;
 import it.therickys93.barorder.server.PayOrder;
 import it.therickys93.barorder.server.Payments;
-import it.therickys93.barorder.server.TestResource;
 import it.therickys93.barorder.server.UpdateOrder;
 
 public class BarOrderInfo {
@@ -19,7 +18,6 @@ public class BarOrderInfo {
 	private static final String PAYMENTS = "payments";
 	private static String DEFAULT_PATH = "/";
 	private static String API_VERSION = "v1";
-	private static String TEST = "test";
 	private static String INSERT_ORDER = "insertOrder";
 	private static String UPDATE_ORDER = "updateOrder";
 	private static String COMPLETE_ORDER = "completeOrder";
@@ -31,11 +29,7 @@ public class BarOrderInfo {
 	public static String apiPath() {
 		return "/" + API_VERSION;
 	}
-	
-	public static String testPathInfo() {
-		return "Started " + TestResource.class.toString() + " @ " + apiPath() + testPath();
-	}
-	
+		
 	public static String insertOrderPathInfo() {
 		return "Started " + InsertOrder.class.toString() + " @ " + apiPath() + insertOrderPath();
 	}
@@ -59,11 +53,7 @@ public class BarOrderInfo {
 	public static String serverInfo() {
 		return "Server started @ http://localhost:" + Configurations.port();
 	}
-	
-	public static String testPath() {
-		return "/" + TEST;
-	}
-	
+		
 	public static String insertOrderPath() {
 		return "/" + INSERT_ORDER;
 	}

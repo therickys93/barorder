@@ -17,7 +17,7 @@ public class BarOrderResponse {
 	
 	private static Map<String, Boolean> createResponseWithSuccess(Boolean success) {
 		Map<String, Boolean> response = new HashMap<String, Boolean>();
-		response.put("success", success);
+		response.put(SUCCESS, success);
 		return response;
 	}
 

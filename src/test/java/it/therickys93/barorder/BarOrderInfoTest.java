@@ -15,7 +15,6 @@ public class BarOrderInfoTest {
 	
 	@Test
 	public void testPaths() {
-		assertEquals("/test", BarOrderInfo.testPath());
 		assertEquals("/insertOrder", BarOrderInfo.insertOrderPath());
 		assertEquals("/updateOrder", BarOrderInfo.updateOrderPath());
 		assertEquals("/completeOrder", BarOrderInfo.completeOrderPath());
@@ -29,7 +28,6 @@ public class BarOrderInfoTest {
 	
 	@Test
 	public void testPathOutput() {
-		assertEquals("Started class it.therickys93.barorder.server.TestResource @ /v1/test", BarOrderInfo.testPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.InsertOrder @ /v1/insertOrder", BarOrderInfo.insertOrderPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.UpdateOrder @ /v1/updateOrder", BarOrderInfo.updateOrderPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.GetProducts @ /v1/products", BarOrderInfo.productsPathInfo());

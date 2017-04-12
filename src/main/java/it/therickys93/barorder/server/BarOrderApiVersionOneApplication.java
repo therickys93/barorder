@@ -11,13 +11,7 @@ public class BarOrderApiVersionOneApplication extends Application {
 	@Override
 	public Restlet createInboundRoot() {
 		Router router = new Router(getContext());
-		
-		// POST /v1/test
-		/*
-		router.attach(BarOrderInfo.testPath(), TestResource.class);
-		getLogger().info(BarOrderInfo.testPathInfo());
-		*/
-		
+				
 		// POST /v1/insertOrder
 		router.attach(BarOrderInfo.insertOrderPath(), InsertOrder.class);
 		getLogger().info(BarOrderInfo.insertOrderPathInfo());
