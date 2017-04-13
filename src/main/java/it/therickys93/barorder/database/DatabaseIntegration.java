@@ -17,6 +17,8 @@ import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
 
+	private static final String SELECT_ALL_PAYMENTS = "select o.id from barorder.order as o where done = 1 and pay = 0";
+	private static final String SELECT_ALL_ORDERS = "select o.id from barorder.order as o where done = 0 and pay = 0";
 	public static final String COMPLETE_ORDER_QUERY = "{ CALL completeOrder(?)}";
 	public static final int COMPLETE_ORDER_ID = 1;
 	public static final String PAY_ORDER_QUERY = "{ CALL payOrder(?)}";
@@ -89,14 +91,7 @@ public class DatabaseIntegration {
 		deleteOrder(order.id());
 		insertNewOrder(order);
 	}
-	
-	public void deleteOrder(int id) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall(DELETE_ORDER_QUERY);
-		callableStatement.setInt(DELETE_ORDER_ID, id);
-		callableStatement.execute();
-		callableStatement.close();
-	}
-	
+		
 	public List<String> allProducts() throws SQLException {
 		List<String> response = new ArrayList<String>();
 		Statement statement = this.connection.createStatement();
@@ -111,20 +106,17 @@ public class DatabaseIntegration {
 	}
 	
 	public List<Order> allOrders() throws SQLException {
-		List<Order> orders = new ArrayList<Order>();
-		Statement statement = this.connection.createStatement();
-		statement.execute("select o.id from barorder.order as o where done = 0 and pay = 0");
-		ResultSet resultSet = statement.getResultSet();
-		while(resultSet.next()){
-			orders.add(orderWithId(resultSet.getInt(1)));
-		}
-		return orders;
+		return all(SELECT_ALL_ORDERS);
 	}
 	
 	public List<Order> allPayments() throws SQLException {
+		return all(SELECT_ALL_PAYMENTS);
+	}
+	
+	private List<Order> all(String query) throws SQLException {
 		List<Order> orders = new ArrayList<Order>();
 		Statement statement = this.connection.createStatement();
-		statement.execute("select o.id from barorder.order as o where done = 1 and pay = 0");
+		statement.execute(query);
 		ResultSet resultSet = statement.getResultSet();
 		while(resultSet.next()) {
 			orders.add(orderWithId(resultSet.getInt(1)));
@@ -158,15 +150,20 @@ public class DatabaseIntegration {
 	}
 	
 	public void completeOrderWithId(int id) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall(COMPLETE_ORDER_QUERY);
-		callableStatement.setInt(COMPLETE_ORDER_ID, id);
-		callableStatement.execute();
-		callableStatement.close();
+		performCallWithQueryIdAndOrderId(COMPLETE_ORDER_QUERY, COMPLETE_ORDER_ID, id);
 	}
 	
 	public void payOrderWithId(int id) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall(PAY_ORDER_QUERY);
-		callableStatement.setInt(PAY_ORDER_ID, id);
+		performCallWithQueryIdAndOrderId(PAY_ORDER_QUERY, PAY_ORDER_ID, id);
+	}
+	
+	public void deleteOrder(int id) throws SQLException {
+		performCallWithQueryIdAndOrderId(DELETE_ORDER_QUERY, DELETE_ORDER_ID, id);
+	}
+	
+	private void performCallWithQueryIdAndOrderId(String query, int id, int orderId) throws SQLException{
+		CallableStatement callableStatement = this.connection.prepareCall(query);
+		callableStatement.setInt(id, orderId);
 		callableStatement.execute();
 		callableStatement.close();
 	}
