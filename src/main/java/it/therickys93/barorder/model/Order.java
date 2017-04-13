@@ -6,6 +6,10 @@ import com.google.gson.JsonParser;
 
 public class Order {
 
+	private static final String PRODUCTS = "products";
+	private static final String DONE = "done";
+	private static final String TABLE = "table";
+	private static final String ORDER_ID = "id";
 	public int id;
 	public int table;
 	public boolean done;
@@ -21,35 +25,13 @@ public class Order {
 	}
 	
 	public Order(String json){
-		/*
-		try {
-			JSONParser parser = new JSONParser();
-			JSONObject order = (JSONObject)parser.parse(json);
-			Long id = (Long)order.get("id");
-			this.id = id.intValue();
-			Long table = (Long)order.get("table");
-			this.table = table.intValue();
-			this.done = (boolean)order.get("done");
-			JSONArray products = (JSONArray)order.get("products");
-			Product[] prods = new Product[products.size()];
-			for(int i = 0; i < products.size(); i++) {
-				JSONObject json_product = (JSONObject)products.get(i);
-				Product product = new Product(json_product.toJSONString());
-				prods[i] = product;
-			}
-			this.products = prods;
-			this.ok = true;
-		} catch(Exception e){
-			this.ok = false;
-		}
-		*/
 		try {
 			JsonParser parser = new JsonParser();
 			JsonObject order = parser.parse(json).getAsJsonObject();
-			this.id = order.get("id").getAsInt();
-			this.table = order.get("table").getAsInt();
-			this.done = order.get("done").getAsBoolean();
-			JsonArray products = order.get("products").getAsJsonArray();
+			this.id = order.get(ORDER_ID).getAsInt();
+			this.table = order.get(TABLE).getAsInt();
+			this.done = order.get(DONE).getAsBoolean();
+			JsonArray products = order.get(PRODUCTS).getAsJsonArray();
 			Product[] prods = new Product[products.size()];
 			for(int i = 0; i < products.size(); i++){
 				JsonObject prod = products.get(i).getAsJsonObject();
@@ -110,23 +92,11 @@ public class Order {
 	}
 
 	public static int parseComplete(String json) {
-		/*
-		int results = 0;
-		try {
-			JSONParser parser = new JSONParser();
-			JSONObject complete = (JSONObject)parser.parse(json);
-			Long id = (Long)complete.get("id");
-			results = id.intValue();
-		} catch (Exception e) {
-			results = 0;
-		}
-		return results;
-		*/
 		int results = 0;
 		try {
 			JsonParser parser = new JsonParser();
 			JsonObject complete = parser.parse(json).getAsJsonObject();
-			results = complete.get("id").getAsInt();
+			results = complete.get(ORDER_ID).getAsInt();
 		} catch(Exception e){
 			results = 0;
 		}

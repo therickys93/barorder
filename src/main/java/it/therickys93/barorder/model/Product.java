@@ -5,6 +5,8 @@ import com.google.gson.JsonParser;
 
 public class Product {
 
+	private static final String QUANTITY = "quantity";
+	private static final String NAME = "name";
 	public String name;
 	public int quantity;
 	private boolean ok;
@@ -19,8 +21,8 @@ public class Product {
 		try{
 			JsonParser parser = new JsonParser();
 			JsonObject product = parser.parse(json).getAsJsonObject();
-			this.name = product.get("name").getAsString();
-			this.quantity = product.get("quantity").getAsInt();
+			this.name = product.get(NAME).getAsString();
+			this.quantity = product.get(QUANTITY).getAsInt();
 			this.ok = true;
 		} catch (Exception e){
 			this.ok = false;
