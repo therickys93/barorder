@@ -4,6 +4,12 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
+import it.therickys93.barorder.endpoints.CompleteOrder;
+import it.therickys93.barorder.endpoints.GetProducts;
+import it.therickys93.barorder.endpoints.InsertOrder;
+import it.therickys93.barorder.endpoints.Orders;
+import it.therickys93.barorder.endpoints.PayOrder;
+import it.therickys93.barorder.endpoints.Payments;
 import it.therickys93.barorder.utils.BarOrderInfo;
 
 public class BarOrderApiVersionOneApplication extends Application {

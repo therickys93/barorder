@@ -29,15 +29,15 @@ public class BarOrderInfoTest {
 	
 	@Test
 	public void testPathOutput() {
-		assertEquals("Started class it.therickys93.barorder.server.InsertOrder @ /v1/insertOrder", BarOrderInfo.insertOrderPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.UpdateOrder @ /v1/updateOrder", BarOrderInfo.updateOrderPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.GetProducts @ /v1/products", BarOrderInfo.productsPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.CompleteOrder @ /v1/completeOrder", BarOrderInfo.completeOrderPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.DeleteOrder @ /v1/deleteOrder", BarOrderInfo.deleteOrderPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.Orders @ /v1/orders", BarOrderInfo.ordersPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.OrderWithId @ /v1/order/{id}", BarOrderInfo.orderWithIdPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.Payments @ /v1/payments", BarOrderInfo.paymentsPathInfo());
-		assertEquals("Started class it.therickys93.barorder.server.PayOrder @ /v1/payOrder", BarOrderInfo.payOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.InsertOrder @ /v1/insertOrder", BarOrderInfo.insertOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.UpdateOrder @ /v1/updateOrder", BarOrderInfo.updateOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.GetProducts @ /v1/products", BarOrderInfo.productsPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.CompleteOrder @ /v1/completeOrder", BarOrderInfo.completeOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.DeleteOrder @ /v1/deleteOrder", BarOrderInfo.deleteOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.Orders @ /v1/orders", BarOrderInfo.ordersPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.OrderWithId @ /v1/order/{id}", BarOrderInfo.orderWithIdPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.Payments @ /v1/payments", BarOrderInfo.paymentsPathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.PayOrder @ /v1/payOrder", BarOrderInfo.payOrderPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.Status @ /v1/status", BarOrderInfo.statusPathInfo());
 	}
 	

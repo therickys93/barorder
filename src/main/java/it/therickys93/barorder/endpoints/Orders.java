@@ -1,4 +1,4 @@
-package it.therickys93.barorder.server;
+package it.therickys93.barorder.endpoints;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,17 +1,17 @@
 package it.therickys93.barorder.utils;
 
-import it.therickys93.barorder.server.CompleteOrder;
+import it.therickys93.barorder.endpoints.CompleteOrder;
+import it.therickys93.barorder.endpoints.DeleteOrder;
+import it.therickys93.barorder.endpoints.GetProducts;
+import it.therickys93.barorder.endpoints.InsertOrder;
+import it.therickys93.barorder.endpoints.OrderWithId;
+import it.therickys93.barorder.endpoints.Orders;
+import it.therickys93.barorder.endpoints.PayOrder;
+import it.therickys93.barorder.endpoints.Payments;
+import it.therickys93.barorder.endpoints.UpdateOrder;
 import it.therickys93.barorder.server.Configurations;
-import it.therickys93.barorder.server.DeleteOrder;
-import it.therickys93.barorder.server.GetProducts;
 import it.therickys93.barorder.server.IndexResource;
-import it.therickys93.barorder.server.InsertOrder;
-import it.therickys93.barorder.server.OrderWithId;
-import it.therickys93.barorder.server.Orders;
-import it.therickys93.barorder.server.PayOrder;
-import it.therickys93.barorder.server.Payments;
 import it.therickys93.barorder.server.Status;
-import it.therickys93.barorder.server.UpdateOrder;
 
 public class BarOrderInfo {
 

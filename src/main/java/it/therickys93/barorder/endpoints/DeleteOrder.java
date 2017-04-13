@@ -1,4 +1,4 @@
-package it.therickys93.barorder.server;
+package it.therickys93.barorder.endpoints;
 
 import java.io.IOException;
 import java.util.Map;
@@ -12,31 +12,31 @@ import it.therickys93.barorder.database.DatabaseIntegration;
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.utils.BarOrderResponse;
 
-public class InsertOrder extends ServerResource{
+public class DeleteOrder extends ServerResource {
 
 	@Post
-	public Map<String, Boolean> newOrder(Representation data) throws IOException {
-		
+	public Map<String, Boolean> deleteOrder(Representation data) throws IOException {
 		String request = data.getText();
 		getLogger().info(request);
 		
-		Order order = new Order(request);
-		if(!order.ok()) {
+		int id = Order.parseComplete(request);
+		if(id == 0) {
 			getLogger().warning("bad request");
 			setStatus(Status.CLIENT_ERROR_BAD_REQUEST, "bad request");
 			return null;
 		}
-		getLogger().info(order.toString());
+		getLogger().info("" + id);
 				
 		try {
 			DatabaseIntegration database = new DatabaseIntegration();
 			database.open();
-			database.insertNewOrder(order);
+			database.deleteOrder(id);
 			database.close();
-		} catch (Exception e){
-			getLogger().warning("Error from the database: " + e.getMessage());
+		} catch(Exception e){
+			getLogger().warning("Error in the database: " + e.getMessage());
 			return BarOrderResponse.bad();
 		}
+		
 		return BarOrderResponse.ok();
 	}
 	

@@ -34,7 +34,8 @@ jacocoTestReport {
     	classDirectories = files(classDirectories.files.collect {
     		fileTree(dir: "${buildDir}/classes/main",
     		exclude: ['it/therickys93/barorder/server/**',
-    					'it/therickys93/barorder/database/**'])
+    					'it/therickys93/barorder/database/**',
+    					'it/therickys93/barorder/endpoints/**'])
     	})
 	}
 }
