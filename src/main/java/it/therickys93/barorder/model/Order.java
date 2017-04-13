@@ -92,6 +92,14 @@ public class Order {
 	}
 
 	public static int parseComplete(String json) {
+		return parse(json);
+	}
+
+	public boolean ok() {
+		return this.ok;
+	}
+	
+	private static int parse(String json){
 		int results = 0;
 		try {
 			JsonParser parser = new JsonParser();
@@ -103,8 +111,8 @@ public class Order {
 		return results;
 	}
 
-	public boolean ok() {
-		return this.ok;
+	public static int parsePayed(String json) {
+		return parse(json);
 	}
 	
 }

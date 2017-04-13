@@ -19,7 +19,7 @@ public class PayOrder extends ServerResource{
 		String request = data.getText();
 		getLogger().info(request);
 		
-		int id = Order.parseComplete(request);
+		int id = Order.parsePayed(request);
 		if(id == 0){
 			getLogger().warning("bad request");
 			setStatus(Status.CLIENT_ERROR_BAD_REQUEST, "bad request");

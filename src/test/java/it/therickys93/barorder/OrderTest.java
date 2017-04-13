@@ -78,6 +78,14 @@ public class OrderTest {
 	}
 	
 	@Test
+	public void testEight() {
+		int id = Order.parsePayed("{\"id\": 102}");
+		assertEquals(102, id);
+		int newId = Order.parsePayed("{\"id\": \"centodue\"}");
+		assertEquals(0, newId);
+	}
+	
+	@Test
 	public void jacksonTest() {
 		Order order = new Order(0, 0, false, products());
 		ObjectMapper objectWriter = new ObjectMapper();
