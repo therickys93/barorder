@@ -7,10 +7,12 @@ script:
   - ./gradlew clean check stage
   - docker build -t therickys93/barorderserver .
   - docker build -t therickys93/barorderdatabase database/
+  - docker build -t therickys93/barorderproxy proxy/
   - docker images | grep "barorder"
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push therickys93/barorderserver;
     docker push therickys93/barorderdatabase;
+    docker push therickys93/barorderproxy;
     fi

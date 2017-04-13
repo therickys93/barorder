@@ -22,9 +22,14 @@ services:
       - BARORDER_USER=root
       - BARORDER_PASSWORD=password
       - BARORDER_DATABASE=barorder
-    ports:
-      - "80:8080"
     networks:
+      - backbone
+
+  proxy:
+    image: therickys93/barorderproxy
+    ports:
+      - "80:80"
+    networks: 
       - backbone
 
 networks:
