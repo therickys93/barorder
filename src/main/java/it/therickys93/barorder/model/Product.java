@@ -1,7 +1,7 @@
 package it.therickys93.barorder.model;
 
-import it.therickys93.barorder.parser.JSONObject;
-import it.therickys93.barorder.parser.JSONParser;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Product {
 
@@ -16,14 +16,13 @@ public class Product {
 	}
 	
 	public Product(String json){
-		try {
-			JSONParser parser = new JSONParser();
-			JSONObject product = (JSONObject)parser.parse(json);
-			this.name = (String)product.get("name");
-			Long quantity = (Long)product.get("quantity");
-			this.quantity = quantity.intValue();
+		try{
+			JsonParser parser = new JsonParser();
+			JsonObject product = parser.parse(json).getAsJsonObject();
+			this.name = product.get("name").getAsString();
+			this.quantity = product.get("quantity").getAsInt();
 			this.ok = true;
-		} catch(Exception e){
+		} catch (Exception e){
 			this.ok = false;
 		}
 	}

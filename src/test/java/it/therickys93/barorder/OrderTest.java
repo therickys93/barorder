@@ -61,16 +61,20 @@ public class OrderTest {
 	public void testSix() {
 		int id = Order.parseComplete("{\"id\": 102}");
 		assertEquals(102, id);
-		int newId = Order.parseComplete("{\"id\": \"102\"}");
+		int newId = Order.parseComplete("{\"id\": \"centodue\"}");
 		assertEquals(0, newId);
 	}
 	
 	@Test
 	public void testSeven() {
-		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
+		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false, "
+				+ "\"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, "
+				+ "{\"name\": \"Cigni\", \"quantity\": 2}]}");
 		assertTrue(order.ok());
-		Order neworder = new Order("{\"id\":102, \"table\": \"20\", \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
-		assertFalse(neworder.ok());
+		Order neworder = new Order("{\"id\":102, \"table\": \"20\", \"done\": false, "
+				+ "\"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, "
+				+ "{\"name\": \"Cigni\", \"quantity\": 2}]}");
+		assertTrue(neworder.ok());
 	}
 	
 	@Test
