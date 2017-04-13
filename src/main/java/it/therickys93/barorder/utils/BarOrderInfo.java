@@ -10,10 +10,12 @@ import it.therickys93.barorder.server.OrderWithId;
 import it.therickys93.barorder.server.Orders;
 import it.therickys93.barorder.server.PayOrder;
 import it.therickys93.barorder.server.Payments;
+import it.therickys93.barorder.server.Status;
 import it.therickys93.barorder.server.UpdateOrder;
 
 public class BarOrderInfo {
 
+	private static final String STATUS = "status";
 	private static final String PAY_ORDER = "payOrder";
 	private static final String PAYMENTS = "payments";
 	private static String DEFAULT_PATH = "/";
@@ -116,6 +118,14 @@ public class BarOrderInfo {
 
 	public static String payOrderPathInfo() {
 		return "Started " + PayOrder.class.toString() + " @ " + apiPath() + payOrderPath();
+	}
+
+	public static String statusPath() {
+		return "/" + STATUS;
+	}
+
+	public static String statusPathInfo() {
+		return "Started " + Status.class.toString() + " @ " + apiPath() + statusPath();
 	}
 
 }

@@ -24,6 +24,7 @@ public class BarOrderInfoTest {
 		assertEquals("/order/{id}", BarOrderInfo.orderWithIdPath());
 		assertEquals("/payments", BarOrderInfo.paymentsPath());
 		assertEquals("/payOrder", BarOrderInfo.payOrderPath());
+		assertEquals("/status", BarOrderInfo.statusPath());
 	}
 	
 	@Test
@@ -37,6 +38,7 @@ public class BarOrderInfoTest {
 		assertEquals("Started class it.therickys93.barorder.server.OrderWithId @ /v1/order/{id}", BarOrderInfo.orderWithIdPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.Payments @ /v1/payments", BarOrderInfo.paymentsPathInfo());
 		assertEquals("Started class it.therickys93.barorder.server.PayOrder @ /v1/payOrder", BarOrderInfo.payOrderPathInfo());
+		assertEquals("Started class it.therickys93.barorder.server.Status @ /v1/status", BarOrderInfo.statusPathInfo());
 	}
 	
 	@Test
