@@ -8,7 +8,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import it.therickys93.barorder.database.DatabaseIntegration;
+import it.therickys93.barorder.database.DatabaseUtils;
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.utils.BarOrderResponse;
 
@@ -28,10 +28,7 @@ public class PayOrder extends ServerResource{
 		getLogger().info("" + id);
 				
 		try {
-			DatabaseIntegration database = new DatabaseIntegration();
-			database.open();
-			database.payOrderWithId(id);
-			database.close();
+			DatabaseUtils.performCall(DatabaseUtils.PAY, id);
 		} catch (Exception e){
 			getLogger().warning("Error with the database" + e.getMessage());
 			return BarOrderResponse.bad();

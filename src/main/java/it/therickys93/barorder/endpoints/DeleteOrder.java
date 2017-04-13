@@ -8,7 +8,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import it.therickys93.barorder.database.DatabaseIntegration;
+import it.therickys93.barorder.database.DatabaseUtils;
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.utils.BarOrderResponse;
 
@@ -28,10 +28,7 @@ public class DeleteOrder extends ServerResource {
 		getLogger().info("" + id);
 				
 		try {
-			DatabaseIntegration database = new DatabaseIntegration();
-			database.open();
-			database.deleteOrder(id);
-			database.close();
+			DatabaseUtils.performCall(DatabaseUtils.DELETE, id);
 		} catch(Exception e){
 			getLogger().warning("Error in the database: " + e.getMessage());
 			return BarOrderResponse.bad();
