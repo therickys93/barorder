@@ -8,7 +8,7 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import it.therickys93.barorder.database.DatabaseIntegration;
+import it.therickys93.barorder.database.DatabaseUtils;
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.utils.BarOrderResponse;
 
@@ -29,10 +29,7 @@ public class InsertOrder extends ServerResource{
 		getLogger().info(order.toString());
 				
 		try {
-			DatabaseIntegration database = new DatabaseIntegration();
-			database.open();
-			database.insertNewOrder(order);
-			database.close();
+			DatabaseUtils.performCall(DatabaseUtils.INSERT, order);
 		} catch (Exception e){
 			getLogger().warning("Error from the database: " + e.getMessage());
 			return BarOrderResponse.bad();

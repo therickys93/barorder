@@ -8,6 +8,8 @@ import it.therickys93.barorder.model.Order;
 
 public class DatabaseUtils {
 
+	public static final String UPDATE = "update";
+	public static final String INSERT = "insert";
 	public static final String PAY = "pay";
 	public static final String DELETE = "delete";
 	public static final String COMPLETE = "complete";
@@ -40,6 +42,17 @@ public class DatabaseUtils {
 			database.completeOrderWithId(id);
 		} else if(name.equals(PAY)){
 			database.payOrderWithId(id);
+		}
+		database.close();
+	}
+	
+	public static void performCall(String name, Order order) throws SQLException {
+		DatabaseIntegration database = new DatabaseIntegration();
+		database.open();
+		if(name.equals(INSERT)){
+			database.insertNewOrder(order);
+		} else if(name.equals(UPDATE)){
+			database.updateOrder(order);
 		}
 		database.close();
 	}
