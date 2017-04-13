@@ -71,10 +71,10 @@ public class OrderTest {
 				+ "\"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, "
 				+ "{\"name\": \"Cigni\", \"quantity\": 2}]}");
 		assertTrue(order.ok());
-		Order neworder = new Order("{\"id\":102, \"table\": \"20\", \"done\": false, "
+		Order neworder = new Order("{\"id\":102, \"table\": \"venti\", \"done\": false, "
 				+ "\"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, "
 				+ "{\"name\": \"Cigni\", \"quantity\": 2}]}");
-		assertTrue(neworder.ok());
+		assertFalse(neworder.ok());
 	}
 	
 	@Test
