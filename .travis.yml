@@ -8,6 +8,7 @@ script:
   - docker build -t therickys93/barorderserver .
   - docker build -t therickys93/barorderdatabase database/
   - docker build -t therickys93/barorderproxy proxy/
+  - docker images
   - docker images | grep "barorder"
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
