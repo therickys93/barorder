@@ -24,4 +24,15 @@ BarOrder per funzionare richiede Java 8 e MySQL Server. Si può inoltre configur
 
 ## Endpoints
 
-In Arrivo...
+* GET /v1/status --> mostra lo stato del sistema
+* GET /v1/products --> mostra tutti i prodotti salvati
+* POST /v1/insertOrder --> inserisce un nuovo ordine
+* GET /v1/orders --> prende tutti gli ordini da effettuare
+* POST /v1/completeOrder --> completa l'ordine
+* GET /v1/payments --> prende tutti gli ordini da pagare
+* POST /v1/payOrder --> paga l'ordine
+
+## Oggetti
+
+* Product: semplice stringa di testo
+* Order: oggetto JSON ```{"id":102, "table":20, "done":false, products:[{"name":"Cioccolata con panna", "quantity":2}, {"name":"Cappuccino", "quantity":2}}```
