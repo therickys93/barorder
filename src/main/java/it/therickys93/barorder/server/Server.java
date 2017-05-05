@@ -2,7 +2,6 @@ package it.therickys93.barorder.server;
 
 import org.restlet.Component;
 import org.restlet.data.Protocol;
-import org.restlet.service.LogService;
 
 import it.therickys93.barorder.utils.BarOrderInfo;
 
@@ -14,7 +13,7 @@ public class Server {
 		component.getServers().add(Protocol.HTTP, Configurations.port());
 		component.getDefaultHost().attach(BarOrderInfo.defaultPath(), new BarOrderApplication());
 		component.getDefaultHost().attach(BarOrderInfo.apiPath(), new BarOrderApiVersionOneApplication());
-		component.setLogService(new LogService(false));
+		component.getLogService().setResponseLogFormat("{S} - {m} {rp}");
 		component.getLogger().info(BarOrderInfo.serverInfo());
 	}
 	
