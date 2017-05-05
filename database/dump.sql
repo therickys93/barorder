@@ -57,11 +57,29 @@ CLOSE cursore;
 DELETE FROM barorder.order WHERE id = ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `deleteProduct`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProduct` (IN `product_name` VARCHAR(255))  NO SQL
+BEGIN
+  DELETE FROM barorder.product WHERE name = product_name;
+END$$
+
+DROP PROCEDURE IF EXISTS `deleteProductAll`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProductAll` ()  NO SQL
+BEGIN
+  DELETE FROM barorder.product;
+END$$
+
 DROP PROCEDURE IF EXISTS `insertNewOrder`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertNewOrder` (IN `id` INT(11), IN `table_n` VARCHAR(255), IN `name` VARCHAR(255), IN `quantity` INT(11))  NO SQL
 BEGIN
 	INSERT INTO barorder.order VALUES (id, table_n, '0', '0');
 	INSERT INTO barorder.has_products VALUES (id, name, quantity);
+END$$
+
+DROP PROCEDURE IF EXISTS `insertProduct`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `NAME` VARCHAR(255))  NO SQL
+BEGIN
+  INSERT INTO barorder.product VALUES (NAME);
 END$$
 
 DROP PROCEDURE IF EXISTS `updateOrder`$$
