@@ -20,7 +20,9 @@ public class Orders extends ServerResource {
 			orders =  DatabaseUtils.get(DatabaseUtils.ORDERS);
 		} catch (SQLException e) {
 			getLogger().warning("error in the database : " + e.getMessage());
+			return null;
 		}
+		getLogger().info(orders.toString());
 		return orders;
 	}
 	

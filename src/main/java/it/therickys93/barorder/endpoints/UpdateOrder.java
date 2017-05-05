@@ -3,7 +3,6 @@ package it.therickys93.barorder.endpoints;
 import java.io.IOException;
 import java.util.Map;
 
-import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
@@ -23,8 +22,8 @@ public class UpdateOrder extends ServerResource {
 		Order order = new Order(request);
 		if(!order.ok()){
 			getLogger().warning("bad request");
-			setStatus(Status.CLIENT_ERROR_BAD_REQUEST, "bad request");
-			return null;
+			getLogger().info(BarOrderResponse.bad().toString());
+			return BarOrderResponse.bad();
 		}
 		getLogger().info(order.toString());
 		

@@ -21,7 +21,8 @@ public class GetProducts extends ServerResource {
 			response = database.allProducts();
 			database.close();
 		} catch(Exception e) {
-			response = null;
+			getLogger().info("error in the database : " + e.getMessage());
+			return null;
 		}
 		getLogger().info(response.toString());
 		return response;

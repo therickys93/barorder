@@ -12,6 +12,7 @@ public class Status extends ServerResource{
 
 	@Get
 	public Map<String, Boolean> status() throws IOException {
+		getLogger().info(BarOrderResponse.ok().toString());
 		return BarOrderResponse.ok();
 	}
 	

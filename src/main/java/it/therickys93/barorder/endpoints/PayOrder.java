@@ -3,7 +3,6 @@ package it.therickys93.barorder.endpoints;
 import java.io.IOException;
 import java.util.Map;
 
-import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
@@ -22,8 +21,8 @@ public class PayOrder extends ServerResource{
 		int id = Order.parsePayed(request);
 		if(id == 0){
 			getLogger().warning("bad request");
-			setStatus(Status.CLIENT_ERROR_BAD_REQUEST, "bad request");
-			return null;
+			getLogger().info(BarOrderResponse.bad().toString());
+			return BarOrderResponse.bad();
 		}
 		getLogger().info("" + id);
 				
@@ -33,7 +32,7 @@ public class PayOrder extends ServerResource{
 			getLogger().warning("Error with the database" + e.getMessage());
 			return BarOrderResponse.bad();
 		}
-		
+		getLogger().info(BarOrderResponse.ok().toString());
 		return BarOrderResponse.ok();
 	}
 	

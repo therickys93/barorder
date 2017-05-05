@@ -19,7 +19,9 @@ public class Payments extends ServerResource{
 			orders = DatabaseUtils.get(DatabaseUtils.PAYMENTS);
 		} catch(Exception e){
 			getLogger().warning("Error in the database: " + e.getMessage());
+			return null;
 		}
+		getLogger().info(orders.toString());
 		return orders;
 	}
 }
