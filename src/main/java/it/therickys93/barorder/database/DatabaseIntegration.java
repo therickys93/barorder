@@ -17,6 +17,11 @@ import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
 
+	private static final int INSERT_PRODUCT_POSITION = 1;
+	private static final String INSERT_PRODUCT_QUERY = "{ CALL insertProduct(?) }";
+	private static final int DELETE_PRODUCT_POSITION = 1;
+	private static final String DELETE_PRODUCT_QUERY = "{ CALL deleteProduct(?) }";
+	private static final String DELETE_PRODUCT_ALL_QUERY = "{ CALL deleteProductAll() }";
 	private static final String SELECT_ALL_PAYMENTS = "select o.id from barorder.order as o where done = 1 and pay = 0";
 	private static final String SELECT_ALL_ORDERS = "select o.id from barorder.order as o where done = 0 and pay = 0";
 	public static final String COMPLETE_ORDER_QUERY = "{ CALL completeOrder(?)}";
@@ -169,14 +174,14 @@ public class DatabaseIntegration {
 	}
 	
 	public void deleteProductAll() throws SQLException {
-		CallableStatement callableStatemente = this.connection.prepareCall("{ CALL deleteProductAll() }");
+		CallableStatement callableStatemente = this.connection.prepareCall(DELETE_PRODUCT_ALL_QUERY);
 		callableStatemente.execute();
 		callableStatemente.close();
 	}
 	
 	public void deleteProduct(String product) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall("{ CALL deleteProduct(?) }");
-		callableStatement.setString(1, product);
+		CallableStatement callableStatement = this.connection.prepareCall(DELETE_PRODUCT_QUERY);
+		callableStatement.setString(DELETE_PRODUCT_POSITION, product);
 		callableStatement.execute();
 		if(callableStatement.getUpdateCount() == 0){
 			throw new SQLException("product not found");
@@ -185,8 +190,8 @@ public class DatabaseIntegration {
 	}
 	
 	public void insertProduct(String product) throws SQLException {
-		CallableStatement callableStatement = this.connection.prepareCall("{ CALL insertProduct(?) }");
-		callableStatement.setString(1, product);
+		CallableStatement callableStatement = this.connection.prepareCall(INSERT_PRODUCT_QUERY);
+		callableStatement.setString(INSERT_PRODUCT_POSITION, product);
 		callableStatement.execute();
 		callableStatement.close();
 	}

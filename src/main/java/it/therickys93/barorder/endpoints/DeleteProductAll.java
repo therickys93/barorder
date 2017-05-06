@@ -19,7 +19,7 @@ public class DeleteProductAll extends ServerResource {
 			database.deleteProductAll();
 			database.close();
 		} catch(Exception e){
-			e.printStackTrace();
+			getLogger().info("database error: " + e.getMessage());
 			getLogger().info(BarOrderResponse.bad().toString());
 			return BarOrderResponse.bad();
 		}
