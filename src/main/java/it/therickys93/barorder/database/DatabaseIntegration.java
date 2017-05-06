@@ -168,6 +168,29 @@ public class DatabaseIntegration {
 		callableStatement.close();
 	}
 	
+	public void deleteProductAll() throws SQLException {
+		CallableStatement callableStatemente = this.connection.prepareCall("{ CALL deleteProductAll() }");
+		callableStatemente.execute();
+		callableStatemente.close();
+	}
+	
+	public void deleteProduct(String product) throws SQLException {
+		CallableStatement callableStatement = this.connection.prepareCall("{ CALL deleteProduct(?) }");
+		callableStatement.setString(1, product);
+		callableStatement.execute();
+		if(callableStatement.getUpdateCount() == 0){
+			throw new SQLException("product not found");
+		}
+		callableStatement.close();
+	}
+	
+	public void insertProduct(String product) throws SQLException {
+		CallableStatement callableStatement = this.connection.prepareCall("{ CALL insertProduct(?) }");
+		callableStatement.setString(1, product);
+		callableStatement.execute();
+		callableStatement.close();
+	}
+	
 	public void open() throws SQLException {
 		this.connection = DriverManager.getConnection(url, username, password);
 	}

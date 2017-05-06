@@ -5,8 +5,11 @@ import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 import it.therickys93.barorder.endpoints.CompleteOrder;
+import it.therickys93.barorder.endpoints.DeleteProduct;
+import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.GetProducts;
 import it.therickys93.barorder.endpoints.InsertOrder;
+import it.therickys93.barorder.endpoints.InsertProduct;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
 import it.therickys93.barorder.endpoints.Payments;
@@ -63,6 +66,18 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// GET /v1/status
 		router.attach(BarOrderInfo.statusPath(), Status.class);
 		getLogger().info(BarOrderInfo.statusPathInfo());
+		
+		// POST /v1/deleteProductAll
+		router.attach("/deleteProductAll", DeleteProductAll.class);
+		getLogger().info("Started class DeleteProductAll @ /v1/deleteProductAll");
+		
+		// POST /v1/deleteProduct/{product}
+		router.attach("/deleteProduct/{product}", DeleteProduct.class);
+		getLogger().info("Started class DeleteProduct @ /v1/deleteProduct/{product}");
+		
+		// POST /v1/insertProduct/{product}
+		router.attach("/insertProduct/{product}", InsertProduct.class);
+		getLogger().info("Started class InsertProduct @ /v1/insertProduct/{product}");
 		
 		return router;
 	}
