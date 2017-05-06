@@ -31,6 +31,9 @@ BarOrder per funzionare richiede Java 8 e MySQL Server. Si può inoltre configur
 * POST /v1/completeOrder --> completa l'ordine
 * GET /v1/payments --> prende tutti gli ordini da pagare
 * POST /v1/payOrder --> paga l'ordine
+* POST /v1/deleteProductAll --> rimuove tutti i prodotti
+* POST /v1/deleteProduct/{product} --> rimuove il prodotto
+* POST /v1/insertProduct/{product} --> aggiunge il prodotto
 
 ## Oggetti
 
