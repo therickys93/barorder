@@ -2,8 +2,11 @@ package it.therickys93.barorder.utils;
 
 import it.therickys93.barorder.endpoints.CompleteOrder;
 import it.therickys93.barorder.endpoints.DeleteOrder;
+import it.therickys93.barorder.endpoints.DeleteProduct;
+import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.GetProducts;
 import it.therickys93.barorder.endpoints.InsertOrder;
+import it.therickys93.barorder.endpoints.InsertProduct;
 import it.therickys93.barorder.endpoints.OrderWithId;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
@@ -15,6 +18,9 @@ import it.therickys93.barorder.server.Status;
 
 public class BarOrderInfo {
 
+	private static final String INSERT_PRODUCT = "insertProduct/{product}";
+	private static final String DELETE_PRODUCT = "deleteProduct/{product}";
+	private static final String DELETE_PRODUCT_ALL = "deleteProductAll";
 	private static final String STATUS = "status";
 	private static final String PAY_ORDER = "payOrder";
 	private static final String PAYMENTS = "payments";
@@ -126,6 +132,30 @@ public class BarOrderInfo {
 
 	public static String statusPathInfo() {
 		return "Started " + Status.class.toString() + " @ " + apiPath() + statusPath();
+	}
+
+	public static String deleteProductsAllPath() {
+		return "/" + DELETE_PRODUCT_ALL;
+	}
+
+	public static String deleteProductPath() {
+		return "/" + DELETE_PRODUCT;
+	}
+
+	public static String insertProductPath() {
+		return "/" + INSERT_PRODUCT;
+	}
+
+	public static String deleteProductsAllPathInfo() {
+		return "Started " + DeleteProductAll.class.toString() + " @ " + apiPath() + deleteProductsAllPath();
+	}
+
+	public static String deleteProductPathInfo() {
+		return "Started " + DeleteProduct.class.toString() + " @ " + apiPath() + deleteProductPath();
+	}
+
+	public static String insertProductPathInfo() {
+		return "Started " + InsertProduct.class.toString() + " @ " + apiPath() + insertProductPath();
 	}
 
 }

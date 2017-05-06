@@ -68,16 +68,16 @@ public class BarOrderApiVersionOneApplication extends Application {
 		getLogger().info(BarOrderInfo.statusPathInfo());
 		
 		// POST /v1/deleteProductAll
-		router.attach("/deleteProductAll", DeleteProductAll.class);
-		getLogger().info("Started class DeleteProductAll @ /v1/deleteProductAll");
+		router.attach(BarOrderInfo.deleteProductsAllPath(), DeleteProductAll.class);
+		getLogger().info(BarOrderInfo.deleteProductsAllPathInfo());
 		
 		// POST /v1/deleteProduct/{product}
-		router.attach("/deleteProduct/{product}", DeleteProduct.class);
-		getLogger().info("Started class DeleteProduct @ /v1/deleteProduct/{product}");
+		router.attach(BarOrderInfo.deleteProductPath(), DeleteProduct.class);
+		getLogger().info(BarOrderInfo.deleteProductPathInfo());
 		
 		// POST /v1/insertProduct/{product}
-		router.attach("/insertProduct/{product}", InsertProduct.class);
-		getLogger().info("Started class InsertProduct @ /v1/insertProduct/{product}");
+		router.attach(BarOrderInfo.insertProductPath(), InsertProduct.class);
+		getLogger().info(BarOrderInfo.insertProductPathInfo());
 		
 		return router;
 	}
