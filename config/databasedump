@@ -6,7 +6,7 @@
 # */15  *   *   *   *   sh databasedump
 
 set -v
-mysqldump -u root -ppassword --add-drop-database --databases barorder > barorder.sql 
+mysqldump -u root -ppassword --add-drop-database --routines --databases barorder > barorder.sql 
 ncftp <<END_OF_SESSION
 open -u $FTP_USER -p $FTP_PASSWORD $FTP_SERVER
 dir
