@@ -38,4 +38,4 @@ BarOrder per funzionare richiede Java 8 e MySQL Server. Si può inoltre configur
 ## Oggetti
 
 * Product: semplice stringa di testo
-* Order: oggetto JSON ```{"id":102, "table":20, "done":false, products:[{"name":"Cioccolata con panna", "quantity":2}, {"name":"Cappuccino", "quantity":2}}```
+* Order: oggetto JSON ```{"id":102, "table":20, "done":false, products:[{"name":"Cioccolata con panna", "quantity":2}, {"name":"Cappuccino", "quantity":2}]}```
