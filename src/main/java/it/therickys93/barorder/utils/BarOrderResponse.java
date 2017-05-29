@@ -21,4 +21,12 @@ public class BarOrderResponse {
 		return response;
 	}
 
+	public static Map<String, Object> status(boolean server, String version, boolean database) {
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("server", server);
+		response.put("version", version);
+		response.put("database", database);
+		return response;
+	}
+
 }

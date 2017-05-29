@@ -21,6 +21,7 @@ public class ConfigTest {
 		assertEquals("root", Configurations.user());
 		assertEquals("password", Configurations.password());
 		assertEquals("barorder", Configurations.database());
+		assertEquals("1.0.0", Configurations.version());
 	}
 	
 	@Test

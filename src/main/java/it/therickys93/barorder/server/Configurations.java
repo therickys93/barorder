@@ -47,5 +47,9 @@ public class Configurations {
 		url += "jdbc:mysql://" + host() + ":3306/" + database();
 		return url;
 	}
+
+	public static String version() {
+		return "1.0.0";
+	}
 	
 }

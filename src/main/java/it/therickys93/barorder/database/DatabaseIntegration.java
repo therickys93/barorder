@@ -141,6 +141,14 @@ public class DatabaseIntegration {
 		return products;
 	}
 	
+	public void checkDatabaseStatus() throws Exception {
+		Statement statement = this.connection.createStatement();
+		ResultSet result = statement.executeQuery("SELECT 1");
+		while(result.next()){}
+		result.close();
+		statement.close();
+	}
+	
 	public Order orderWithId(int id) throws SQLException {
 		Order order = null;
 		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done from barorder.order as o where id = ?;");
