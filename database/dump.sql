@@ -69,6 +69,13 @@ BEGIN
   DELETE FROM barorder.product;
 END$$
 
+DROP PROCEDURE IF EXISTS `deleteOrderAll`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOrderAll` ()  NO SQL
+BEGIN
+  DELETE FROM barorder.has_products;
+  DELETE FROM barorder.order;
+END$$
+
 DROP PROCEDURE IF EXISTS `insertNewOrder`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertNewOrder` (IN `id` INT(11), IN `table_n` VARCHAR(255), IN `name` VARCHAR(255), IN `quantity` INT(11))  NO SQL
 BEGIN
