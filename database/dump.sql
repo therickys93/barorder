@@ -113,6 +113,19 @@ CREATE TABLE `has_products` (
 -- --------------------------------------------------------
 
 --
+-- Triggers `has_products`
+--
+DROP TRIGGER IF EXISTS `update_price`;
+DELIMITER $$
+CREATE TRIGGER `update_price` AFTER INSERT ON `has_products` FOR EACH ROW BEGIN
+  DECLARE new_price DOUBLE(5,2);
+    SET new_price = (SELECT SUM(has_products.quantity * product.price) AS price FROM has_products, product WHERE has_products.name = product.name AND id = NEW.id);
+    UPDATE barorder.order SET price = new_price WHERE id = NEW.id;
+END
+$$
+DELIMITER ;
+
+--
 -- Struttura della tabella `order`
 --
 
@@ -121,7 +134,8 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `table` varchar(255) NOT NULL,
   `done` tinyint(1) NOT NULL DEFAULT '0',
-  `pay` tinyint(1) NOT NULL DEFAULT '0'
+  `pay` tinyint(1) NOT NULL DEFAULT '0',
+  `price` double(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -132,7 +146,8 @@ CREATE TABLE `order` (
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `price` double(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
