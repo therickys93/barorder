@@ -155,11 +155,11 @@ public class DatabaseIntegration {
 	
 	public Order orderWithId(int id) throws SQLException {
 		Order order = null;
-		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done from barorder.order as o where id = ?;");
+		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done, o.price from barorder.order as o where id = ?;");
 		statement.setInt(1, id);
 		ResultSet resultSet = statement.executeQuery();
 		while(resultSet.next()){
-			order = new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3), productsWithId(id).toArray(new Product[0]));
+			order = new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3), productsWithId(id).toArray(new Product[0]), resultSet.getDouble(4));
 		}
 		resultSet.close();
 		statement.close();
