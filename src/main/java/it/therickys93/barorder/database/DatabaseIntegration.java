@@ -17,8 +17,9 @@ import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
 
+	private static final int INSERT_PRODUCT_PRICE_POSITION = 2;
 	private static final int INSERT_PRODUCT_POSITION = 1;
-	private static final String INSERT_PRODUCT_QUERY = "{ CALL insertProduct(?) }";
+	private static final String INSERT_PRODUCT_QUERY = "{ CALL insertProduct(?, ?) }";
 	private static final int DELETE_PRODUCT_POSITION = 1;
 	private static final String DELETE_PRODUCT_QUERY = "{ CALL deleteProduct(?) }";
 	private static final String DELETE_PRODUCT_ALL_QUERY = "{ CALL deleteProductAll() }";
@@ -199,8 +200,13 @@ public class DatabaseIntegration {
 	}
 	
 	public void insertProduct(String product) throws SQLException {
+		insertProduct(product, 0.0);
+	}
+	
+	public void insertProduct(String product, double price) throws SQLException {
 		CallableStatement callableStatement = this.connection.prepareCall(INSERT_PRODUCT_QUERY);
 		callableStatement.setString(INSERT_PRODUCT_POSITION, product);
+		callableStatement.setDouble(INSERT_PRODUCT_PRICE_POSITION, price);
 		callableStatement.execute();
 		callableStatement.close();
 	}

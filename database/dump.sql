@@ -84,9 +84,9 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `insertProduct`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `NAME` VARCHAR(255))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `NAME` VARCHAR(255), IN `PRICE` DOUBLE(5,2))  NO SQL
 BEGIN
-  INSERT INTO barorder.product VALUES (NAME);
+  INSERT INTO barorder.product VALUES (NAME, PRICE);
 END$$
 
 DROP PROCEDURE IF EXISTS `updateOrder`$$
