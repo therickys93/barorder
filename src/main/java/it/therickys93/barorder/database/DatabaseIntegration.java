@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.model.Product;
@@ -115,22 +113,13 @@ public class DatabaseIntegration {
 		return response;
 	}
 	
-<<<<<<< HEAD
 	public List<ProductWithPrice> allProductsWithPrice() throws SQLException {
 		List<ProductWithPrice> response = new ArrayList<ProductWithPrice>();
-=======
-	public Map<String, Double> allProductsWithPrice() throws SQLException {
-		Map<String, Double> response = new HashMap<String, Double>();
->>>>>>> aggiunto endpoint products with price
 		Statement statement = this.connection.createStatement();
 		statement.execute("SELECT * FROM barorder.product");
 		ResultSet resultSet = statement.getResultSet();
 		while(resultSet.next()){
-<<<<<<< HEAD
 			response.add(new ProductWithPrice(resultSet.getString(1), resultSet.getDouble(2)));
-=======
-			response.put(resultSet.getString(1), resultSet.getDouble(2));
->>>>>>> aggiunto endpoint products with price
 		}
 		resultSet.close();
 		statement.close();
