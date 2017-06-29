@@ -7,6 +7,7 @@ import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.GetProducts;
 import it.therickys93.barorder.endpoints.InsertOrder;
 import it.therickys93.barorder.endpoints.InsertProduct;
+import it.therickys93.barorder.endpoints.InsertProductWithPrice;
 import it.therickys93.barorder.endpoints.OrderWithId;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
@@ -18,6 +19,7 @@ import it.therickys93.barorder.server.Status;
 
 public class BarOrderInfo {
 
+	private static final String INSERT_PRODUCT_WITH_PRICE = "insertProduct/{product}/{price}";
 	private static final String INSERT_PRODUCT = "insertProduct/{product}";
 	private static final String DELETE_PRODUCT = "deleteProduct/{product}";
 	private static final String DELETE_PRODUCT_ALL = "deleteProductAll";
@@ -156,6 +158,14 @@ public class BarOrderInfo {
 
 	public static String insertProductPathInfo() {
 		return "Started " + InsertProduct.class.toString() + " @ " + apiPath() + insertProductPath();
+	}
+
+	public static String insertProductWithPricePath() {
+		return "/" + INSERT_PRODUCT_WITH_PRICE;
+	}
+
+	public static String insertProductWithPricePathInfo() {
+		return "Started " + InsertProductWithPrice.class.toString() + " @ " + apiPath() + insertProductWithPricePath();
 	}
 
 }
