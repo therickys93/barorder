@@ -170,6 +170,7 @@ public class BarOrderInfo {
 		return "Started " + InsertProductWithPrice.class.toString() + " @ " + apiPath() + insertProductWithPricePath();
 	}
 
+<<<<<<< HEAD
 	public static String productsWithPricePath() {
 		return "/" + PRODUCTS_WITH_PRICE;
 	}
@@ -178,4 +179,6 @@ public class BarOrderInfo {
 		return "Started " + ProductsWithPrice.class.toString() + " @ " + apiPath() + productsWithPricePath();
 	}
 
+=======
+>>>>>>> aggiunto endpoint inserimento prodotto con prezzo
 }
