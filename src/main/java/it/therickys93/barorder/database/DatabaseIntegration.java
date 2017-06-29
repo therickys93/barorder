@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.model.Product;
@@ -106,6 +108,19 @@ public class DatabaseIntegration {
 		ResultSet resultSet = statement.getResultSet();
 		while(resultSet.next()) {
 			response.add(resultSet.getString(PRODUCT_NAME_COLUMN));
+		}
+		resultSet.close();
+		statement.close();
+		return response;
+	}
+	
+	public Map<String, Double> allProductsWithPrice() throws SQLException {
+		Map<String, Double> response = new HashMap<String, Double>();
+		Statement statement = this.connection.createStatement();
+		statement.execute("SELECT * FROM barorder.product");
+		ResultSet resultSet = statement.getResultSet();
+		while(resultSet.next()){
+			response.put(resultSet.getString(1), resultSet.getDouble(2));
 		}
 		resultSet.close();
 		statement.close();

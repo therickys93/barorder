@@ -14,6 +14,7 @@ import it.therickys93.barorder.endpoints.InsertProductWithPrice;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
 import it.therickys93.barorder.endpoints.Payments;
+import it.therickys93.barorder.endpoints.ProductsWithPrice;
 import it.therickys93.barorder.utils.BarOrderInfo;
 
 public class BarOrderApiVersionOneApplication extends Application {
@@ -35,6 +36,10 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// GET /v1/products
 		router.attach(BarOrderInfo.productsPath(), GetProducts.class);
 		getLogger().info(BarOrderInfo.productsPathInfo());
+		
+		// GET /v1/productsWithPrice
+		router.attach(BarOrderInfo.productsWithPricePath(), ProductsWithPrice.class);
+		getLogger().info(BarOrderInfo.productsWithPricePathInfo());
 		
 		// POST /v1/completeOrder
 		router.attach(BarOrderInfo.completeOrderPath(), CompleteOrder.class);

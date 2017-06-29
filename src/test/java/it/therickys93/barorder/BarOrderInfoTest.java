@@ -29,6 +29,7 @@ public class BarOrderInfoTest {
 		assertEquals("/deleteProduct/{product}", BarOrderInfo.deleteProductPath());
 		assertEquals("/insertProduct/{product}", BarOrderInfo.insertProductPath());
 		assertEquals("/insertProduct/{product}/{price}", BarOrderInfo.insertProductWithPricePath());
+		assertEquals("/productsWithPrice", BarOrderInfo.productsWithPricePath());
 	}
 	
 	@Test
@@ -47,6 +48,7 @@ public class BarOrderInfoTest {
 		assertEquals("Started class it.therickys93.barorder.endpoints.DeleteProduct @ /v1/deleteProduct/{product}", BarOrderInfo.deleteProductPathInfo());
 		assertEquals("Started class it.therickys93.barorder.endpoints.InsertProduct @ /v1/insertProduct/{product}", BarOrderInfo.insertProductPathInfo());
 		assertEquals("Started class it.therickys93.barorder.endpoints.InsertProductWithPrice @ /v1/insertProduct/{product}/{price}", BarOrderInfo.insertProductWithPricePathInfo());
+		assertEquals("Started class it.therickys93.barorder.endpoints.ProductsWithPrice @ /v1/productsWithPrice", BarOrderInfo.productsWithPricePathInfo());
 	}
 	
 	@Test
