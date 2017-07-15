@@ -22,6 +22,10 @@ eval "$(curl -sL https://raw.githubusercontent.com/therickys93/barorder/master/i
 
 BarOrder per funzionare richiede Java 8 e MySQL Server. Si può inoltre configurare un reverse proxy con nginx e utilizzare supervisor per riattivare il server in caso di errore o di spegnimento del computer. 
 
+## Provalo subito
+
+[![Try in PWD](https://cdn.rawgit.com/play-with-docker/stacks/cff22438/assets/images/button.png)](http://play-with-docker.com?stack=https://raw.githubusercontent.com/therickys93/barorder/master/docker-compose.stack.yml)
+
 ## Endpoints
 
 * GET /v1/status --> mostra lo stato del sistema
