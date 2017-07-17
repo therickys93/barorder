@@ -4,7 +4,7 @@ sudo: required
 services:
   - docker
 script:
-  - ./gradlew clean check stage
+  - ./gradlew clean check jacocoTestReport stage
   - docker build -t therickys93/barorderserver .
   - docker build -t therickys93/barorderdatabase database/
   - docker build -t therickys93/barorderproxy proxy/
