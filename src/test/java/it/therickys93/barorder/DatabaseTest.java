@@ -77,5 +77,5 @@ public class DatabaseTest {
 	public void testDatabaseUtils() {
 		DatabaseUtils database = new DatabaseUtils();
 		database.toString();
-	}
+	}	
 }

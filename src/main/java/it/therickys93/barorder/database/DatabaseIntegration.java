@@ -126,6 +126,8 @@ public class DatabaseIntegration {
 		while(resultSet.next()) {
 			orders.add(orderWithId(resultSet.getInt(1)));
 		}
+		resultSet.close();
+		statement.close();
 		return orders;
 	}
 	
