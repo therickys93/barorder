@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import it.therickys93.barorder.database.DatabaseInfo;
 import it.therickys93.barorder.database.DatabaseIntegration;
+import it.therickys93.barorder.database.DatabaseUtils;
 import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseTest {
@@ -62,5 +64,18 @@ public class DatabaseTest {
 	public void testGetAllProducts() {
 		assertEquals("SELECT * FROM product", DatabaseIntegration.GET_ALL_PRODUCTS_QUERY);
 		assertEquals(1, DatabaseIntegration.PRODUCT_NAME_COLUMN);
+	}
+	
+	@Test
+	public void testDatabaseInfo() {
+		DatabaseInfo database = new DatabaseInfo();
+		database.toString();
+		DatabaseInfo.main(null);
+	}
+	
+	@Test
+	public void testDatabaseUtils() {
+		DatabaseUtils database = new DatabaseUtils();
+		database.toString();
 	}
 }
