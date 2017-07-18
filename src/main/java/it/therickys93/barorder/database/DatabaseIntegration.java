@@ -82,6 +82,7 @@ public class DatabaseIntegration {
 		callableStatement.setString(INSERT_NEW_ORDER_NAME, order.products()[0].name());
 		callableStatement.setInt(INSERT_NEW_ORDER_QUANTITY, order.products()[0].quantity());
 		callableStatement.execute();
+		callableStatement.close();
 		callableStatement = this.connection.prepareCall(UPDATE_ORDER_QUERY);
 		callableStatement.setInt(UPDATE_ORDER_ID, order.id());
 		for(int i = 1; i < order.products().length; i++) {
@@ -140,6 +141,8 @@ public class DatabaseIntegration {
 			Product product = new Product(resultSet.getString(1), resultSet.getInt(2));
 			products.add(product);
 		}
+		resultSet.close();
+		preparedStatement.close();
 		return products;
 	}
 	
