@@ -6,8 +6,10 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.restlet.representation.Representation;
 
+import com.mockrunner.base.VerifyFailedException;
 import com.mockrunner.jdbc.BasicJDBCTestCaseAdapter;
 import com.mockrunner.jdbc.StatementResultSetHandler;
 import com.mockrunner.mock.jdbc.MockConnection;
@@ -15,9 +17,12 @@ import com.mockrunner.mock.jdbc.MockResultSet;
 
 import it.therickys93.barorder.endpoints.CompleteOrder;
 import it.therickys93.barorder.endpoints.DeleteOrder;
+import it.therickys93.barorder.endpoints.DeleteProduct;
 import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.GetProducts;
 import it.therickys93.barorder.endpoints.InsertOrder;
+import it.therickys93.barorder.endpoints.InsertProduct;
+import it.therickys93.barorder.endpoints.OrderWithId;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
 import it.therickys93.barorder.endpoints.Payments;
@@ -201,5 +206,64 @@ public class EndpointsTest extends BasicJDBCTestCaseAdapter {
 		boolean done = false;
 		Product[] products = {new Product("cappuccino", 2), new Product("brioches", 2)};
 		return new Order(id, table, done, products);
+	}
+	
+	@Test
+	public void insertProduct() throws IOException {
+		prepareEmptyResultSet();
+		
+		InsertProduct insertProduct = mock(InsertProduct.class);
+		when(insertProduct.getAttribute("product")).thenReturn("cappuccino");
+		when(insertProduct.insertProduct()).thenCallRealMethod();
+		when(insertProduct.getLogger()).thenCallRealMethod();
+		
+		insertProduct.insertProduct();
+		
+		teardown();
+	}
+	
+	@Test(expected = VerifyFailedException.class)
+	public void deleteProduct() throws IOException {
+		prepareEmptyResultSet();
+		
+		DeleteProduct insertProduct = mock(DeleteProduct.class);
+		when(insertProduct.getAttribute("product")).thenReturn("cappuccino");
+		when(insertProduct.deleteProduct()).thenCallRealMethod();
+		when(insertProduct.getLogger()).thenCallRealMethod();
+		
+		insertProduct.deleteProduct();
+		
+		teardown();
+	}
+	
+	@Test
+	public void orderWithId() throws IOException {
+		prepareEmptyResultSet();
+		
+		OrderWithId orderId = mock(OrderWithId.class);
+		when(orderId.getAttribute("id")).thenReturn("102");
+		when(orderId.orderWithId()).thenCallRealMethod();
+		
+		orderId.orderWithId();
+		
+		teardown();
+	}
+	
+	@Test
+	public void orderWithIdNull() throws IOException {		
+		OrderWithId orderId = mock(OrderWithId.class);
+		when(orderId.getAttribute("id")).thenReturn(null);
+		when(orderId.orderWithId()).thenCallRealMethod();
+		
+		orderId.orderWithId();
+	}
+	
+	@Test
+	public void orderWithIdEmpty() throws IOException {		
+		OrderWithId orderId = mock(OrderWithId.class);
+		when(orderId.getAttribute("id")).thenReturn("");
+		when(orderId.orderWithId()).thenCallRealMethod();
+		
+		orderId.orderWithId();
 	}
 }
