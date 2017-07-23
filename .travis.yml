@@ -15,7 +15,6 @@ after_success:
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker push therickys93/barorderserver;
   docker push therickys93/barorderdatabase; docker push therickys93/barorderproxy;
   fi
-after_success:
 - sh set_tags.sh
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
