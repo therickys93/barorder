@@ -14,7 +14,7 @@ public class OrderWithId extends ServerResource {
 	public Order orderWithId() throws IOException {
 		
 		final String string_id = getAttribute("id");
-		if(string_id.equals(null) || string_id.equals("")) {
+		if(string_id == null || string_id.equals("")) {
 			return null;
 		}
 		final int id = Integer.parseInt(string_id);
