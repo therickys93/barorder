@@ -1,0 +1,9 @@
+config/
+database/
+proxy/
+.travis.yml
+README.md
+codeci.yml
+docker-compose.*
+install_*
+set_tags.sh
