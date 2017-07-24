@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.restlet.representation.Representation;
 
 import com.mockrunner.base.VerifyFailedException;
