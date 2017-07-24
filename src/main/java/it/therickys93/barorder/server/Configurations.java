@@ -49,7 +49,7 @@ public class Configurations {
 	}
 
 	public static String version() {
-		return "1.0.0";
+		return Configurations.class.getPackage().getImplementationVersion();
 	}
 	
 }

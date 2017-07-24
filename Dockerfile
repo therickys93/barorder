@@ -1,5 +1,5 @@
 FROM therickys93/alpinejava
 ADD . /barorder
 WORKDIR /barorder
-RUN ./gradlew clean check stage
+RUN ./gradlew clean stage
 CMD /bin/bash run.sh
