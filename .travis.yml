@@ -28,7 +28,7 @@ deploy:
   provider: releases
   api_key:
     secure: KQM5YfMXRZNgaksihZjnZbaABzuaoTUS7pK0sZBqZ5a7SQwOxfYmk4nvAlMxdbwfJ6e94ZTgyrWfTvGwCcD8gvgH6i2Ozl6mIzEV98w4yAQyuM5JAB06kbI+0r/xWkF6TocZ0jwW4LSGoXjq93ecGHRlJwyI8NvNj49VJ+/vJ3mVdleZlcPM/gqC+ITactT78LjZAJuX32vOGYtLGPxjgm1T5vegdxu0me9f2j+pOCl1/yp8f79hhvZvzLur7iEPYpvX/XcoXfYixzP46at46MLJ47o6ReH4OhczzPuy2zx1N0BIB9OWaA3/hbKpWPx7CMheaaOfhH9CxHlZ/0OQUZFmKM24F6B7/6HeA8zvAJklGqTiktlNDzvZr9T/ASUYrShTttebV+hzl3XyOjYW5xXmTyE0lFTC+Ewj6XpSEV7Rv7UiSlyZdnhGJSX3PjhKOwCT3S8/MAAQ9LO+l7gwUrY7J4/Xy+3z5oZ+8VaGKW6SJeFbS1MCVTL+lVdGHd6vNY+5IBgxgA2UIwVEw6wMbWxsrwzMNn2qxRnd0c69lfI6r+BKw8bPxEBuGndup6XLvU12VN8ety11thOzwmS01A4bfAR7QedcnAIQ+Aam14C5uVbdHEcb1+/2/skXEsAWRN81ttjBKKP2SK6Jak6Ong1x/UrnHlPZuni+fvJqdxs=
-  file: build/libs/barorder.jar
+  file: build/libs/barorder*.jar
   file_glob: "true"
   skip_cleanup: true
   on:

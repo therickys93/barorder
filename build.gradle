@@ -8,7 +8,7 @@ targetCompatibility = 1.8
 buildscript {
   repositories { jcenter() }
   dependencies {
-    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
     classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.9'
   }
 }
@@ -59,8 +59,25 @@ pitest {
     targetClasses = [ "it.therickys93.barorder.*" ]
 }
 
+def travisBuilNumber = System.getenv("TRAVIS_BUILD_NUMBER")
+def int buildNumber = travisBuilNumber != null ? Integer.valueOf(travisBuilNumber) : 1
+
+def versionName = 'v1.0'
+
+task testJar(type: Jar) {
+  manifest {
+    attributes 'Description': 'App Server BarOrder'
+    attributes 'Implementation-Version' : versionName + '.' + buildNumber
+  }
+}
+
 shadowJar {
-    archiveName 'barorder.jar'
+    baseName = 'barorder'
+    classifier = null
+    version = versionName + '.' + buildNumber
+    manifest {
+        inheritFrom project.tasks.testJar.manifest
+    }
 }
 
 task stage() {
