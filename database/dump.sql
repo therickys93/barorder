@@ -40,21 +40,21 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `deleteOrder`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOrder` (IN `ID` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOrder` (IN `ORDER_ID` INT(11))  NO SQL
 BEGIN
 DECLARE ended INT;
 DECLARE product VARCHAR(255);
-DECLARE cursore CURSOR FOR SELECT name FROM barorder.has_products WHERE id = ID;
+DECLARE cursore CURSOR FOR SELECT name FROM barorder.has_products WHERE id = ORDER_ID;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET ended = 1;
 OPEN cursore;
 SET ended = 0;
 
 WHILE ended = 0 DO
 	FETCH cursore INTO product;
-    DELETE FROM barorder.has_products WHERE id = ID AND name = product;
+    DELETE FROM barorder.has_products WHERE id = ORDER_ID AND name = product;
 END WHILE;
 CLOSE cursore;
-DELETE FROM barorder.order WHERE id = ID;
+DELETE FROM barorder.order WHERE id = ORDER_ID;
 END$$
 
 DROP PROCEDURE IF EXISTS `deleteProduct`$$
@@ -67,6 +67,13 @@ DROP PROCEDURE IF EXISTS `deleteProductAll`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProductAll` ()  NO SQL
 BEGIN
   DELETE FROM barorder.product;
+END$$
+
+DROP PROCEDURE IF EXISTS `deleteOrderAll`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOrderAll` ()  NO SQL
+BEGIN
+  DELETE FROM barorder.has_products;
+  DELETE FROM barorder.order;
 END$$
 
 DROP PROCEDURE IF EXISTS `insertNewOrder`$$
