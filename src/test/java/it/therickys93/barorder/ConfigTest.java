@@ -1,7 +1,7 @@
 package it.therickys93.barorder;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertNull;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ConfigTest {
 		assertEquals("root", Configurations.user());
 		assertEquals("password", Configurations.password());
 		assertEquals("barorder", Configurations.database());
-		assertEquals("1.0.0", Configurations.version());
+		assertNull(Configurations.version());
 	}
 	
 	@Test
