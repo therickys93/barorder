@@ -62,7 +62,7 @@ pitest {
 def travisBuilNumber = System.getenv("TRAVIS_BUILD_NUMBER")
 def int buildNumber = travisBuilNumber != null ? Integer.valueOf(travisBuilNumber) : 1
 
-def versionName = 'v1.0'
+def versionName = 'v1.1'
 
 task testJar(type: Jar) {
   manifest {
