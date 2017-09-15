@@ -3,6 +3,7 @@ package it.therickys93.barorder.server;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 
+import it.therickys93.barorder.database.DatabaseInfo;
 import it.therickys93.barorder.utils.BarOrderInfo;
 
 public class Server {
@@ -26,6 +27,8 @@ public class Server {
 	}
 	
 	public static void main(String[] args) throws Exception{
+		final DatabaseInfo database = new DatabaseInfo();
+		database.info();
 		final Server server = new Server();
 		server.start();
 	}
