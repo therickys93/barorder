@@ -52,4 +52,8 @@ public class Configurations {
 		return Configurations.class.getPackage().getImplementationVersion();
 	}
 	
+	public static String logFormat() {
+		return "{S} - {m} {rp}";
+	}
+	
 }

@@ -1,7 +1,6 @@
 package it.therickys93.barorder;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -51,6 +50,11 @@ public class ConfigTest {
 		environmentVariables.set("BARORDER_PASSWORD", "pass1234");
 		environmentVariables.set("BARORDER_DATABASE", "bardata");
 		assertEquals("jdbc:mysql://mysql:3306/bardata", Configurations.url());
+	}
+	
+	@Test
+	public void testFive() {
+		assertEquals("{S} - {m} {rp}", Configurations.logFormat());
 	}
 	
 }

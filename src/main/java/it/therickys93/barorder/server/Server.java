@@ -13,7 +13,7 @@ public class Server {
 		component.getServers().add(Protocol.HTTP, Configurations.port());
 		component.getDefaultHost().attach(BarOrderInfo.defaultPath(), new BarOrderApplication());
 		component.getDefaultHost().attach(BarOrderInfo.apiPath(), new BarOrderApiVersionOneApplication());
-		component.getLogService().setResponseLogFormat("{S} - {m} {rp}");
+		component.getLogService().setResponseLogFormat(Configurations.logFormat());
 		component.getLogger().info(BarOrderInfo.serverInfo());
 	}
 	
