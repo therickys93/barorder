@@ -14,10 +14,4 @@ public class DatabaseInfo {
 		System.out.println("Database Port: " + database.port());
 		System.out.println("Database Name: " + database.database());
 	}
-	
-	public static void main(String[] args) {
-		DatabaseInfo database = new DatabaseInfo();
-		database.info();
-	}
-
 }
