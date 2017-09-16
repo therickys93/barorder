@@ -149,7 +149,6 @@ public class DatabaseIntegration {
 	public void checkDatabaseStatus() throws Exception {
 		Statement statement = this.connection.createStatement();
 		ResultSet result = statement.executeQuery("SELECT 1");
-		while(result.next()){}
 		result.close();
 		statement.close();
 	}

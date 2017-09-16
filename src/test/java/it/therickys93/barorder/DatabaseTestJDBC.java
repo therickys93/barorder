@@ -271,4 +271,9 @@ public class DatabaseTestJDBC extends BasicJDBCTestCaseAdapter {
 		DatabaseUtils.performCall("errore", 102);
 		teardown();
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void utilsGetErrorCodeCoverage() throws SQLException {
+		DatabaseUtils.get("orders");
+	}
 }
