@@ -1,7 +1,6 @@
 package it.therickys93.barorder.endpoints;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class Orders extends ServerResource {
 		List<Order> orders = new ArrayList<Order>();
 		try {
 			orders =  DatabaseUtils.get(DatabaseUtils.ORDERS);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			getLogger().warning("error in the database : " + e.getMessage());
 			return null;
 		}
