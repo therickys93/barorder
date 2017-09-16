@@ -23,6 +23,7 @@ public class DeleteProduct extends ServerResource {
 			database.close();
 		} catch(Exception e){
 			getLogger().info("database error: " + e.getMessage());
+			getLogger().info("database error: product not found");
 			getLogger().info(BarOrderResponse.bad().toString());
 			return BarOrderResponse.bad();
 		}

@@ -195,9 +195,6 @@ public class DatabaseIntegration {
 		CallableStatement callableStatement = this.connection.prepareCall(DELETE_PRODUCT_QUERY);
 		callableStatement.setString(DELETE_PRODUCT_POSITION, product);
 		callableStatement.execute();
-		if(callableStatement.getUpdateCount() == 0){
-			throw new SQLException("product not found");
-		}
 		callableStatement.close();
 	}
 	

@@ -15,6 +15,7 @@ public class InsertProduct extends ServerResource {
 	@Post
 	public Map<String, Boolean> insertProduct() throws IOException {
 		String product = getAttribute("product");
+		getLogger().info(product);
 		product = URLDecoder.decode(product, "UTF-8");
 		try {
 			DatabaseIntegration database = new DatabaseIntegration();

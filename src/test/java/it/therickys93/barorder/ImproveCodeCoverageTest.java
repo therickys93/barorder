@@ -10,6 +10,7 @@ import org.restlet.representation.Representation;
 
 import it.therickys93.barorder.endpoints.CompleteOrder;
 import it.therickys93.barorder.endpoints.DeleteOrder;
+import it.therickys93.barorder.endpoints.DeleteProduct;
 import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.InsertOrder;
 import it.therickys93.barorder.endpoints.InsertProduct;
@@ -107,7 +108,32 @@ public class ImproveCodeCoverageTest {
 		InsertProduct insert = new InsertProduct();
 		insert.toString();
 	}
+	
+	@Test
+	public void test12() throws IOException {
+		InsertProduct insert = mock(InsertProduct.class);
+		when(insert.getAttribute("product")).thenReturn("cioccolata%20con%20panna");
+		when(insert.getLogger()).thenCallRealMethod();
+		when(insert.insertProduct()).thenCallRealMethod();
+		insert.insertProduct();
+	}
+	
+	@Test
+	public void test13() throws IOException {
+		DeleteProduct product = new DeleteProduct();
+		product.toString();
+	}
+	
+	@Test
+	public void test14() throws IOException {
+		DeleteProduct product = mock(DeleteProduct.class);
+		when(product.getAttribute("product")).thenReturn("cioccolata%20con%20panna");
+		when(product.getLogger()).thenCallRealMethod();
+		when(product.deleteProduct()).thenCallRealMethod();
 		
+		product.deleteProduct();
+	}
+	
 	private Order createOrderOk() {
 		int id = 102;
 		int table = 20;

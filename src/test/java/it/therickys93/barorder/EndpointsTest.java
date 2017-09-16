@@ -233,7 +233,7 @@ public class EndpointsTest extends BasicJDBCTestCaseAdapter {
 		teardown();
 	}
 	
-	@Test(expected = VerifyFailedException.class)
+	@Test
 	public void deleteProduct() throws IOException {
 		prepareEmptyResultSet();
 		
