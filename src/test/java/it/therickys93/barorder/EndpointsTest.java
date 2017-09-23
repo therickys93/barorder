@@ -70,11 +70,23 @@ public class EndpointsTest extends BasicJDBCTestCaseAdapter {
 	}
 	
 	@Test
+	public void ordersWithoutDatabase() throws IOException {
+		Orders orders = new Orders();
+		orders.orders();
+	}
+	
+	@Test
 	public void paymentsWithDatabase() throws IOException {
 		prepareEmptyResultSet();
 		Payments payments = new Payments();
 		payments.payments();
 		teardown();
+	}
+	
+	@Test
+	public void paymentsWithoutDatabase() throws IOException {
+		Payments payments = new Payments();
+		payments.payments();
 	}
 	
 	@Test
@@ -185,7 +197,7 @@ public class EndpointsTest extends BasicJDBCTestCaseAdapter {
 		
 		teardown();
 	}
-	
+		
 	@Test
 	public void updateOrderError() throws Exception {		
 		Representation representation = mock(Representation.class);
@@ -221,7 +233,7 @@ public class EndpointsTest extends BasicJDBCTestCaseAdapter {
 		teardown();
 	}
 	
-	@Test(expected = VerifyFailedException.class)
+	@Test
 	public void deleteProduct() throws IOException {
 		prepareEmptyResultSet();
 		

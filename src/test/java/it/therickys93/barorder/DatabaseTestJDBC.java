@@ -173,7 +173,7 @@ public class DatabaseTestJDBC extends BasicJDBCTestCaseAdapter {
 		teardown();
 	}
 	
-	@Test(expected = SQLException.class)
+	@Test
 	public void deleteProduct() throws SQLException {
 		prepareEmptyResultSet();
 		DatabaseIntegration database = new DatabaseIntegration();
@@ -270,5 +270,10 @@ public class DatabaseTestJDBC extends BasicJDBCTestCaseAdapter {
 		prepareEmptyResultSet();
 		DatabaseUtils.performCall("errore", 102);
 		teardown();
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void utilsGetErrorCodeCoverage() throws SQLException {
+		DatabaseUtils.get("orders");
 	}
 }

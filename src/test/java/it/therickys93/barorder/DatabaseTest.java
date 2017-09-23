@@ -70,7 +70,7 @@ public class DatabaseTest {
 	public void testDatabaseInfo() {
 		DatabaseInfo database = new DatabaseInfo();
 		database.toString();
-		DatabaseInfo.main(null);
+		database.info();
 	}
 	
 	@Test
