@@ -1,0 +1,4 @@
+load database
+   from mysql://root:password@localhost/barorder
+   into pgsql:///barorder
+   alter schema 'barorder' rename to 'public';
