@@ -15,6 +15,7 @@ public class Order {
 	public boolean done;
 	public Product[] products;
 	private boolean ok;
+	public double price;
 	
 	public Order(int id, int table, boolean done, Product[] products) {
 		this.id = id;
@@ -22,6 +23,7 @@ public class Order {
 		this.done = done;
 		this.products = products;
 		this.ok = true;
+		this.price = 0.0;
 	}
 	
 	public Order(String json){
@@ -31,6 +33,9 @@ public class Order {
 			this.id = order.get(ORDER_ID).getAsInt();
 			this.table = order.get(TABLE).getAsInt();
 			this.done = order.get(DONE).getAsBoolean();
+			if(order.get("price") != null){
+				this.price = order.get("price").getAsDouble();
+			}
 			JsonArray products = order.get(PRODUCTS).getAsJsonArray();
 			Product[] prods = new Product[products.size()];
 			for(int i = 0; i < products.size(); i++){
@@ -43,6 +48,14 @@ public class Order {
 		} catch(Exception e){
 			this.ok = false;
 		}
+	}
+
+	public Order(int id, int table, boolean done, Product[] products, double price) {
+		this.id = id;
+		this.table = table;
+		this.done = done;
+		this.products = products;
+		this.price = price;
 	}
 
 	public int id() {
@@ -63,7 +76,7 @@ public class Order {
 
 	public String toString() {
 		String response = "";
-		response += "Order={id=" + this.id + ", table=" + this.table + ", done=" + this.done + ", products=[";
+		response += "Order={id=" + this.id + ", table=" + this.table + ", done=" + this.done + ", price=" + this.price + ", products=[";
 		for(int i = 0; i < this.products.length; i++){
 			response += this.products[i].toString();
 			if(i == this.products.length - 1) {
@@ -78,7 +91,7 @@ public class Order {
 
 	public String toJson() {
 		String response = "";
-		response += "{\"id\":" + this.id + ",\"table\":" + this.table + ",\"done\":" + this.done + ",\"products\":[";
+		response += "{\"id\":" + this.id + ",\"table\":" + this.table + ",\"done\":" + this.done + ",\"price\":"+this.price+",\"products\":[";
 		for(int i = 0; i < this.products.length; i++){
 			response += this.products[i].toJson();
 			if(i == this.products.length - 1) {
@@ -113,6 +126,10 @@ public class Order {
 
 	public static int parsePayed(String json) {
 		return parse(json);
+	}
+
+	public double price() {
+		return this.price;
 	}
 	
 }

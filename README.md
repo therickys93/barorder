@@ -38,6 +38,8 @@ BarOrder per funzionare richiede Java 8 e MySQL Server. Si può inoltre configur
 * POST /v1/deleteProductAll --> rimuove tutti i prodotti
 * POST /v1/deleteProduct/{product} --> rimuove il prodotto
 * POST /v1/insertProduct/{product} --> aggiunge il prodotto
+* POST /v1/insertProduct/{product}/{price} --> aggiunge il prodotto con il prezzo
+* GET /v1/productsWithPrice --> restituisce prodotti con relativo prezzo
 
 ## Oggetti
 

@@ -19,6 +19,8 @@ import it.therickys93.barorder.model.Product;
 
 public class OrderTest {
 	
+	private static final double DELTA = 1e-15;
+	
 	@Test
 	public void testOne() {
 		Order order = new Order(102, 20, false, products());
@@ -32,29 +34,29 @@ public class OrderTest {
 	@Test
 	public void testTwo() {
 		Order order = new Order(102, 20, false, products());
-		assertEquals("Order={id=102, table=20, done=false, products=[Product={name=Cioccolata con panna, quantity=2}]}", order.toString());
-		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2}]}", order.toJson());
+		assertEquals("Order={id=102, table=20, done=false, price=0.0, products=[Product={name=Cioccolata con panna, quantity=2}]}", order.toString());
+		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"price\":0.0,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2}]}", order.toJson());
 	}
 	
 	@Test
 	public void testThree() {
 		Order order = new Order(102, 20, false, moreThanOne());
-		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2},{\"name\":\"Cigni\",\"quantity\":2}]}", order.toJson());
-		assertEquals("Order={id=102, table=20, done=false, products=[Product={name=Cioccolata con panna, quantity=2}, Product={name=Cigni, quantity=2}]}", order.toString());
+		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"price\":0.0,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2},{\"name\":\"Cigni\",\"quantity\":2}]}", order.toJson());
+		assertEquals("Order={id=102, table=20, done=false, price=0.0, products=[Product={name=Cioccolata con panna, quantity=2}, Product={name=Cigni, quantity=2}]}", order.toString());
 	}
 	
 	@Test
 	public void testFour() {
 		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}]}");
-		assertEquals("Order={id=102, table=20, done=false, products=[Product={name=Cioccolata con panna, quantity=2}]}", order.toString());
-		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2}]}", order.toJson());
+		assertEquals("Order={id=102, table=20, done=false, price=0.0, products=[Product={name=Cioccolata con panna, quantity=2}]}", order.toString());
+		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"price\":0.0,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2}]}", order.toJson());
 	}
 	
 	@Test
 	public void testFive(){
 		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false, \"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}, {\"name\": \"Cigni\", \"quantity\": 2}]}");
-		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2},{\"name\":\"Cigni\",\"quantity\":2}]}", order.toJson());
-		assertEquals("Order={id=102, table=20, done=false, products=[Product={name=Cioccolata con panna, quantity=2}, Product={name=Cigni, quantity=2}]}", order.toString());
+		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"price\":0.0,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2},{\"name\":\"Cigni\",\"quantity\":2}]}", order.toJson());
+		assertEquals("Order={id=102, table=20, done=false, price=0.0, products=[Product={name=Cioccolata con panna, quantity=2}, Product={name=Cigni, quantity=2}]}", order.toString());
 	}
 	
 	@Test
@@ -92,7 +94,7 @@ public class OrderTest {
 		objectWriter.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 		try {
 			String s = objectWriter.writeValueAsString(order);
-			assertEquals("{\"id\":0,\"table\":0,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2,\"ok\":true}],\"ok\":true}", s);
+			assertEquals("{\"id\":0,\"table\":0,\"done\":false,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2,\"ok\":true}],\"ok\":true,\"price\":0.0}", s);
 		} catch(JsonGenerationException e) {
 			e.printStackTrace();
 		} catch(JsonMappingException e) {
@@ -100,6 +102,19 @@ public class OrderTest {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testWithPrice() {
+		Order order = new Order(102, 20, false, products(), 2.50);
+		assertEquals(2.50, order.price(), DELTA);
+	}
+	
+	@Test
+	public void testPriceFromJson() {
+		Order order = new Order("{\"id\":102, \"table\": 20, \"done\": false,\"price\":2.50,\"products\": [{\"name\": \"Cioccolata con panna\", \"quantity\": 2}]}");
+		assertEquals(2.5, order.price(), DELTA);
+		assertEquals("{\"id\":102,\"table\":20,\"done\":false,\"price\":2.5,\"products\":[{\"name\":\"Cioccolata con panna\",\"quantity\":2}]}", order.toJson());
 	}
 	
 	private Product[] products() {

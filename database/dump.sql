@@ -79,14 +79,14 @@ END$$
 DROP PROCEDURE IF EXISTS `insertNewOrder`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertNewOrder` (IN `id` INT(11), IN `table_n` VARCHAR(255), IN `name` VARCHAR(255), IN `quantity` INT(11))  NO SQL
 BEGIN
-	INSERT INTO barorder.order VALUES (id, table_n, '0', '0');
+	INSERT INTO barorder.order VALUES (id, table_n, '0', '0', '0.00');
 	INSERT INTO barorder.has_products VALUES (id, name, quantity);
 END$$
 
 DROP PROCEDURE IF EXISTS `insertProduct`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `NAME` VARCHAR(255))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `NAME` VARCHAR(255), IN `PRICE` DOUBLE(5,2))  NO SQL
 BEGIN
-  INSERT INTO barorder.product VALUES (NAME);
+  INSERT INTO barorder.product VALUES (NAME, PRICE);
 END$$
 
 DROP PROCEDURE IF EXISTS `updateOrder`$$
@@ -113,6 +113,19 @@ CREATE TABLE `has_products` (
 -- --------------------------------------------------------
 
 --
+-- Triggers `has_products`
+--
+DROP TRIGGER IF EXISTS `update_price`;
+DELIMITER $$
+CREATE TRIGGER `update_price` AFTER INSERT ON `has_products` FOR EACH ROW BEGIN
+  DECLARE new_price DOUBLE(5,2);
+    SET new_price = (SELECT SUM(has_products.quantity * product.price) AS price FROM has_products, product WHERE has_products.name = product.name AND id = NEW.id);
+    UPDATE barorder.order SET price = new_price WHERE id = NEW.id;
+END
+$$
+DELIMITER ;
+
+--
 -- Struttura della tabella `order`
 --
 
@@ -121,7 +134,8 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `table` varchar(255) NOT NULL,
   `done` tinyint(1) NOT NULL DEFAULT '0',
-  `pay` tinyint(1) NOT NULL DEFAULT '0'
+  `pay` tinyint(1) NOT NULL DEFAULT '0',
+  `price` double(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -132,46 +146,47 @@ CREATE TABLE `order` (
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `price` double(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `product`
 --
 
-INSERT INTO `product` (`name`) VALUES
-('acqua'),
-('bibite'),
-('caffe al ginseng'),
-('caffe americano'),
-('caffe d\'orzo'),
-('caffe decaffeinato'),
-('caffe decaffeinato shakerato'),
-('caffe espresso'),
-('caffe freddo'),
-('caffe latte'),
-('caffe shakerato'),
-('cappuccino'),
-('cappuccino al ginseng'),
-('cappuccino d\'orzo'),
-('cappuccino decaffeinato'),
-('cappuccino freddo'),
-('ciambella'),
-('cioccolata'),
-('cioccolata con panna'),
-('crema di caffe'),
-('crostata'),
-('frullati vari'),
-('insalatone'),
-('latte bianco'),
-('latte macchiato'),
-('panini assortiti'),
-('spremuta'),
-('succhi di frutta'),
-('the ed infusi'),
-('the freddo'),
-('toast'),
-('tramezzini assortiti');
+INSERT INTO `product` (`name`, `price`) VALUES
+('acqua', '0.50'),
+('bibite', '1.00'),
+('caffe al ginseng', '1.50'),
+('caffe americano', '1.50'),
+('caffe d\'orzo', '1.00'),
+('caffe decaffeinato', '1.20'),
+('caffe decaffeinato shakerato', '1.30'),
+('caffe espresso', '1.00'),
+('caffe freddo', '2.00'),
+('caffe latte', '2.50'),
+('caffe shakerato', '1.50'),
+('cappuccino', '2.50'),
+('cappuccino al ginseng', '2.80'),
+('cappuccino d\'orzo', '2.80'),
+('cappuccino decaffeinato', '2.80'),
+('cappuccino freddo', '2.80'),
+('ciambella', '3.00'),
+('cioccolata', '3.50'),
+('cioccolata con panna', '4.00'),
+('crema di caffe', '3.50'),
+('crostata', '2.50'),
+('frullati vari', '3.00'),
+('insalatone', '5.00'),
+('latte bianco', '2.00'),
+('latte macchiato', '2.50'),
+('panini assortiti', '4.50'),
+('spremuta', '3.50'),
+('succhi di frutta', '3.00'),
+('the ed infusi', '2.50'),
+('the freddo', '2.50'),
+('toast', '5.00'),
+('tramezzini assortiti', '4.50');
 
 --
 -- Indici per le tabelle `order`

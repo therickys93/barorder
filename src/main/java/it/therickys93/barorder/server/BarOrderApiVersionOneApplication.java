@@ -10,9 +10,11 @@ import it.therickys93.barorder.endpoints.DeleteProductAll;
 import it.therickys93.barorder.endpoints.GetProducts;
 import it.therickys93.barorder.endpoints.InsertOrder;
 import it.therickys93.barorder.endpoints.InsertProduct;
+import it.therickys93.barorder.endpoints.InsertProductWithPrice;
 import it.therickys93.barorder.endpoints.Orders;
 import it.therickys93.barorder.endpoints.PayOrder;
 import it.therickys93.barorder.endpoints.Payments;
+import it.therickys93.barorder.endpoints.ProductsWithPrice;
 import it.therickys93.barorder.utils.BarOrderInfo;
 
 public class BarOrderApiVersionOneApplication extends Application {
@@ -34,6 +36,10 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// GET /v1/products
 		router.attach(BarOrderInfo.productsPath(), GetProducts.class);
 		getLogger().info(BarOrderInfo.productsPathInfo());
+		
+		// GET /v1/productsWithPrice
+		router.attach(BarOrderInfo.productsWithPricePath(), ProductsWithPrice.class);
+		getLogger().info(BarOrderInfo.productsWithPricePathInfo());
 		
 		// POST /v1/completeOrder
 		router.attach(BarOrderInfo.completeOrderPath(), CompleteOrder.class);
@@ -78,6 +84,10 @@ public class BarOrderApiVersionOneApplication extends Application {
 		// POST /v1/insertProduct/{product}
 		router.attach(BarOrderInfo.insertProductPath(), InsertProduct.class);
 		getLogger().info(BarOrderInfo.insertProductPathInfo());
+		
+		// POST /v1/insertProduct/{product}/{price}
+		router.attach(BarOrderInfo.insertProductWithPricePath(), InsertProductWithPrice.class);
+		getLogger().info(BarOrderInfo.insertProductWithPricePathInfo());
 		
 		return router;
 	}

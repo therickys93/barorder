@@ -13,12 +13,14 @@ import java.util.List;
 
 import it.therickys93.barorder.model.Order;
 import it.therickys93.barorder.model.Product;
+import it.therickys93.barorder.model.ProductWithPrice;
 import it.therickys93.barorder.server.Configurations;
 
 public class DatabaseIntegration {
 
+	private static final int INSERT_PRODUCT_PRICE_POSITION = 2;
 	private static final int INSERT_PRODUCT_POSITION = 1;
-	private static final String INSERT_PRODUCT_QUERY = "{ CALL insertProduct(?) }";
+	private static final String INSERT_PRODUCT_QUERY = "{ CALL insertProduct(?, ?) }";
 	private static final int DELETE_PRODUCT_POSITION = 1;
 	private static final String DELETE_PRODUCT_QUERY = "{ CALL deleteProduct(?) }";
 	private static final String DELETE_PRODUCT_ALL_QUERY = "{ CALL deleteProductAll() }";
@@ -111,6 +113,19 @@ public class DatabaseIntegration {
 		return response;
 	}
 	
+	public List<ProductWithPrice> allProductsWithPrice() throws SQLException {
+		List<ProductWithPrice> response = new ArrayList<ProductWithPrice>();
+		Statement statement = this.connection.createStatement();
+		statement.execute("SELECT * FROM barorder.product");
+		ResultSet resultSet = statement.getResultSet();
+		while(resultSet.next()){
+			response.add(new ProductWithPrice(resultSet.getString(1), resultSet.getDouble(2)));
+		}
+		resultSet.close();
+		statement.close();
+		return response;
+	}
+	
 	public List<Order> allOrders() throws SQLException {
 		return all(SELECT_ALL_ORDERS);
 	}
@@ -155,11 +170,11 @@ public class DatabaseIntegration {
 	
 	public Order orderWithId(int id) throws SQLException {
 		Order order = null;
-		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done from barorder.order as o where id = ?;");
+		PreparedStatement statement = this.connection.prepareStatement("select o.id, o.table, o.done, o.price from barorder.order as o where id = ?;");
 		statement.setInt(1, id);
 		ResultSet resultSet = statement.executeQuery();
 		while(resultSet.next()){
-			order = new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3), productsWithId(id).toArray(new Product[0]));
+			order = new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3), productsWithId(id).toArray(new Product[0]), resultSet.getDouble(4));
 		}
 		resultSet.close();
 		statement.close();
@@ -199,8 +214,13 @@ public class DatabaseIntegration {
 	}
 	
 	public void insertProduct(String product) throws SQLException {
+		insertProduct(product, 0.0);
+	}
+	
+	public void insertProduct(String product, double price) throws SQLException {
 		CallableStatement callableStatement = this.connection.prepareCall(INSERT_PRODUCT_QUERY);
 		callableStatement.setString(INSERT_PRODUCT_POSITION, product);
+		callableStatement.setDouble(INSERT_PRODUCT_PRICE_POSITION, price);
 		callableStatement.execute();
 		callableStatement.close();
 	}
