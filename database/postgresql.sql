@@ -34,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: has_products; Type: TABLE; Schema: public; Owner: vagrant
+-- Name: has_products; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.has_products (
@@ -44,10 +44,11 @@ CREATE TABLE public.has_products (
 );
 
 
-ALTER TABLE public.has_products OWNER TO vagrant;
+ALTER TABLE public.has_products OWNER TO postgres;
+ALTER TABLE public.has_products REPLICA IDENTITY FULL;
 
 --
--- Name: order; Type: TABLE; Schema: public; Owner: vagrant
+-- Name: order; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."order" (
@@ -58,10 +59,11 @@ CREATE TABLE public."order" (
 );
 
 
-ALTER TABLE public."order" OWNER TO vagrant;
+ALTER TABLE public."order" OWNER TO postgres;
+ALTER TABLE public."order" REPLICA IDENTITY FULL;
 
 --
--- Name: product; Type: TABLE; Schema: public; Owner: vagrant
+-- Name: product; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.product (
@@ -69,10 +71,11 @@ CREATE TABLE public.product (
 );
 
 
-ALTER TABLE public.product OWNER TO vagrant;
+ALTER TABLE public.product OWNER TO postgres;
+ALTER TABLE public.product REPLICA IDENTITY FULL;
 
 --
--- Data for Name: has_products; Type: TABLE DATA; Schema: public; Owner: vagrant
+-- Data for Name: has_products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.has_products (id, name, quantity) FROM stdin;
